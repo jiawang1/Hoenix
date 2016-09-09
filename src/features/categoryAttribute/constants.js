@@ -1,0 +1,8 @@
+export const DEMO_COUNT = 'DEMO_COUNT';
+export const RESET_COUNT = 'RESET_COUNT';
+export const SHOW_AUDIT = 'SHOW_AUDIT';
+export const QUERY_ATTRIBUTE = 'QUERY_ATTRIBUTE';
+export const GET_TABLE_META = 'GET_TABLE_META';
+export const RECEIEVE_ATTRIBUTE = 'RECEIEVE_ATTRIBUTE';
+
+
