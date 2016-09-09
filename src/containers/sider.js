@@ -63,7 +63,7 @@ export default React.createClass({
   render:function() {
     return (
       <Menu onClick={this.handleClick}
-        style={{ width: 240 }}
+        style={{ width: 224 }}
         defaultOpenKeys={['/sample']}
         selectedKeys={[this.state.current]}
         mode="inline"
