@@ -13,7 +13,7 @@ class Header extends Component{
 <div className="test">
 				<Row type="flex" justify="space-around" align="middle">
 					<Col span={4}>
-						<img className="logoImage" src="../image/fiveStar.png" />
+						<img className="logoImage" src="../image/logo.png" />
 					</Col>
 					<Col span={2}>
 					   <a href="#">首页</a>

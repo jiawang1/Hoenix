@@ -25,7 +25,7 @@ module.exports = {
 		
 		'/api/**':{
 		
-			target: 'https://localhost:8088/',
+			target: 'http://localhost:8088/',
 			secure: false
 
 		}
