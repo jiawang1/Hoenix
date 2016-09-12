@@ -2,6 +2,8 @@ import {
   DefaultPage,
 } from './index';
 
+import stockFreeze from '../stockFreeze/route';
+
 export default {
  // path: 'stockLevel',
 // indexRoute: { component: DefaultPage },
@@ -10,7 +12,7 @@ export default {
   childRoutes: [
     { text:"库存冻结", name:"stockFreeze",
 	  childRoutes:[{
-    	path: 'viewStock', text:"库存查看处理", component: DefaultPage}
+    	path: 'viewStock', text:"创建库存冻结", component: DefaultPage}
     ]},
   ],
 };

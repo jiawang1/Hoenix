@@ -32,7 +32,7 @@ class Header extends Component{
 					<InputGroup >
 <Input style={{ width: 263 }} placeholder="搜索"/>
  <div className="ant-input-group-wrap">
- <Button icon="search"/>
+ <Button className="search-button" icon="search"/>
  </div>
  </InputGroup>
  </Col>
