@@ -1,32 +1,57 @@
 @import './lesshat.less';
 
-@small: 5px;
-@medium: 10px;
-@large: 20px;
-@smallLabel: 100px;
+// Main Area
 
+@main-area-padding:20px;
 
-.largeMarginTop{
-	margin-top: @large;
+// Different Size Margin
+@margin-xs: 5px;
+@margin-s: 10px;
+@margin-m: 20px;
+@margin-l: 40px;
+
+// Different Size Padding
+@padding-xs: 5px;
+@padding-s: 10px;
+@padding-m: 20px;
+@padding-l: 40px;
+
+// Different Size Label
+
+// no more than 8 words
+@label-s: 100px;
+
+.main-area{
+	padding: @main-area-padding;
 }
 
-.largeMarginBottom{
-	margin-bottom: @large;
+// 'margin/padding'-'top/bottom/left/right'-'xs/s/m/l/xl'
+.m-xs{
+	margin:@margin-xs;
 }
 
-.largeMarginLeft{
-	margin-left: @large;
+
+.m-t-m{
+	margin-top: @margin-m;
 }
 
-.largeMarginRight{
-	margin-right: @large;
+.m-b-m{
+	margin-bottom: @margin-m;
 }
 
-.largePaddingTop{
-	padding-top: @large;
+.m-l-m{
+	margin-left: @margin-m;
 }
-.smallLabel{
-	width: @smallLabel;
+
+.m-r-m{
+	margin-right: @margin-m;
+}
+
+.p-t-m{
+	padding-top: @padding-m;
+}
+.label-s{
+	width: @label-s;
 	display: inline-block;
 	text-align:right;
 }
