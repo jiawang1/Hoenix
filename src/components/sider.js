@@ -8,12 +8,12 @@ const MenuItemGroup = Menu.ItemGroup;
 export default React.createClass({
 
 	propTypes:{
-		oNavLinks: PropTypes.object.isRequired
-
+		oNavLinks: PropTypes.object.isRequired,
+		initPath:  PropTypes.string,
 	},
 	getInitialState:function() {
     return {
-      current: '/sample/default-page',
+		current: this.props.initPath?this.props.initPath: '/sample/default-page' ,
     };
   },
   handleClick: function(e) {
@@ -22,7 +22,18 @@ export default React.createClass({
     });
   },
 
-  renderLinks: function(aConfigs, basePath){
+  renderLinks: function(aConfigs, basePath, isSub){
+
+
+	  const depTitle = (isSub, config)=>{ 
+	  
+		if(isSub){
+			return <span>{config.text}</span>;
+		}else{
+		
+			return <span><Icon type="setting" />{config.text}</span>;
+		}
+	  };
 
 
 	  return aConfigs.reduce((prev, config)=>{
@@ -30,31 +41,28 @@ export default React.createClass({
 		  let _path = '';
 
 		  if(config.path !== "*"){
-		  if(config.path && config.path.length > 0   ){
-			  if(/^\//.test(config.path)){
-				  _path = config.path;
-			  } else if (basePath === '/' || typeof basePath === 'undefined' ) {
-				  _path = `/${config.path}`;
-			  } else {
-				  _path = `${basePath}/${config.path}`;
+			  if(config.path && config.path.length > 0   ){
+				  if(/^\//.test(config.path)){
+					  _path = config.path;
+				  } else if (basePath === '/' || typeof basePath === 'undefined' ) {
+					  _path = `/${config.path}`;
+				  } else {
+					  _path = `${basePath}/${config.path}`;
+				  }
 			  }
-		  }
+			  if(config.childRoutes){
+				  prev.push(<SubMenu key={_path.length > 0?_path:config.name} title={depTitle(isSub, config)}>
+							{this.renderLinks(config.childRoutes, _path, true)} 
+							</SubMenu>
+						   );	
 
-		  if(config.component){
-
-			  prev.push( <Menu.Item key={ _path }> <Link to={_path}>{config.text}</Link> </Menu.Item> );
-
-		  }else if(config.childRoutes){
-
-			  prev.push(<SubMenu key={_path.length > 0?_path:config.name} title={<span><Icon type="setting" />{config.text}<span></span></span>}>
-						{this.renderLinks(config.childRoutes, _path)} 
-						</SubMenu>
-					   );
-
-		  }else{
-			  console.error("error with router config");	
-
-		  }	}	
+			  }else if (config.component){
+				  prev.push( <Menu.Item key={ _path }> <Link to={_path}>{config.text}</Link> </Menu.Item> );
+			  }
+			  else{
+				  console.error("error with router config");	
+			  }	
+		  }	
 		  return prev;
 
 	  },[]);

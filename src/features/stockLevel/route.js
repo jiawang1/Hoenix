@@ -3,13 +3,14 @@ import {
 } from './index';
 
 export default {
-  path: 'stockLevel',
-  indexRoute: { component: DefaultPage },
+ // path: 'stockLevel',
+// indexRoute: { component: DefaultPage },
   text:"库存管理",
+  name:'stockLevel',
   childRoutes: [
-    { path: 'stockFreeze', text:"库存冻结", childRoutes:[{
-    	path: 'defaultPage', text:"库存查看处理", component: DefaultPage}
-
-    ] },
+    { text:"库存冻结", name:"stockFreeze",
+	  childRoutes:[{
+    	path: 'viewStock', text:"库存查看处理", component: DefaultPage}
+    ]},
   ],
 };
