@@ -35,11 +35,11 @@ class DefaultPage extends Component {
         <h5>Welcome to Hoenix project!</h5>
         <p>该项目应用了<a href="http://ant.design/" target="blank">Ant Design</a>的前端框架。Ant Design 采用 
         <a href="https://facebook.github.io/react/" target="blank">React</a> 封装了一套丰富、灵活、实用的基础组件，可以为业务产品提供强有力的设计支持。</p>
-        <p>想了解Ant Design的组件请在<a href="http://ant.design/docs/react/introduce" target="blank">Ant Design</a>页面上方搜索</p>
+        <p>想了解Ant Design的组件请在<a href="http://ant.design/docs/react/introduce" target="blank">Ant Design</a>页面上方搜索。</p>
         <p>以下是项目前端的开发指南和规范：</p>
         <Row gutter={20}>
           <Col span={12}>
-            <h5>js 规范：</h5>
+            <h5 className="m-tb-s">js 规范：</h5>
             <Collapse defaultActiveKey={['1']} onChange={callback}>
               <Panel header="js文件结构" key="1">
                 <p>每个页面对应src/features下面的一个单独的文件夹。该初始文件夹中包涵：</p>
@@ -66,11 +66,11 @@ class DefaultPage extends Component {
             </Collapse>
           </Col>
           <Col span={12}>
-            <h5>css 规范：</h5>
+            <h5 className="m-tb-s">css 规范：</h5>
             <Collapse defaultActiveKey={['1']} onChange={callback}>
               <Panel header="css文件结构" key="1">
                 <p>项目上css文件是层层引入的结构，可以修改的部分在features/和styles/下面。Ant Design中的所有css文件在node_modules/antd/lib/style下面，请勿修改这些文件，以免产品升级时样式覆盖的麻烦。如需修改组件自带的样式，请另写css覆盖。</p>
-                <p>与features文件夹同级有styles文件夹，该文件夹中包涵：</p>
+                <p>与features文件夹同级有styles文件夹，该文件夹中包含：</p>
                 <ul>
                   <li>index.less：项目中所有引用的less文件，可以通过调整文件引入顺序实现覆盖。</li>
                   <li>base.less：所有要覆盖原组件样式的css写在这里</li>
@@ -79,8 +79,8 @@ class DefaultPage extends Component {
                   <li>reset.css</li>
                   <li>mixins.less：项目中UI通用规范</li>
                 </ul>
-                <p>在每个页面独有的文件夹中包涵了style.less文件，定义了该页面所有引用的less文件，需用“@import './XxxPage.less';”语句将其引入。</p>
-                <p>页面中的图片统一放在src/image下面</p>
+                <p>在每个页面独有的文件夹中包含了style.less文件，定义了该页面所有引用的less文件，需用“@import './XxxPage.less';”语句将其引入。</p>
+                <p>页面中的图片统一放在src/image下面。</p>
               </Panel>
               <Panel header="css命名规则" key="2">
                 <p>每个页面独有的less文件与页面主结构js文件命名相同，即XxxPage.less。</p>
