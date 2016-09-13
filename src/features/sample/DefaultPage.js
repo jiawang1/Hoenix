@@ -80,7 +80,7 @@ class DefaultPage extends Component {
                   <li>mixins.less：项目中UI通用规范</li>
                 </ul>
                 <p>在每个页面独有的文件夹中包含了style.less文件，定义了该页面所有引用的less文件，需用“@import './XxxPage.less';”语句将其引入。</p>
-                <p>页面中的图片统一放在src/image下面。（ 需使用 src require 或css background: url的方式将图片引入。)</p>
+                <p>页面中的图片统一放在src/image下面。（ 需使用 &lt; img src={'{'}require("url"){'}'}&gt; 或css .class{'{'}background: url('url'){'{'}的方式将图片引入。</p>
               </Panel>
               <Panel header="css命名规则" key="2">
                 <p>每个页面独有的less文件与页面主结构js文件命名相同，即XxxPage.less。</p>
