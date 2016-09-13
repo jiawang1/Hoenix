@@ -129,10 +129,10 @@ class CategoryAttributePage extends Component {
 
   render() {
     return (
-		<div  className= "largePaddingTop largeMarginLeft largeMarginRight mainField">
-			<Row gutter={16} className="largeMarginBottom">
-				<Col span={8}>  
-					<label className="smallLabel">渠道： </label>
+		<div  className= "main-area">
+			<Row gutter={16} className="m-b-m">
+				<Col span={8}>
+					<label className="label-s">渠道： </label>
 					<Select labelInValue style={{ width: 200 }} optionFilterProp="children" notFoundContent="无法找到"
 					onChange={this.handleChange}>
 						<Option value="all">所有渠道</Option>
@@ -142,12 +142,12 @@ class CategoryAttributePage extends Component {
 						<Option value="jh">建行</Option>
 					</Select>
 				</Col>
-				<Col span={8}> 
-					<label className="smallLabel">地区： </label>
+				<Col span={8}>
+					<label className="label-s">地区： </label>
 					<Cascader options={options} onChange={this.onCascadeChange} placeholder="" style={{ width: 200 }}/>
 				</Col>
 				<Col span={8}>
-					<label className="smallLabel">是否销售属性： </label>
+					<label className="label-s">是否销售属性： </label>
 						<Select labelInValue style={{ width: 200 }} optionFilterProp="children" notFoundContent="无法找到"
 					onChange={this.handleChange}>
 						<Option value="y">是</Option>
@@ -156,9 +156,9 @@ class CategoryAttributePage extends Component {
 				</Col>
 			</Row>
 
-			<Row gutter={16} className="largeMarginBottom">
+			<Row gutter={16} className="m-b-m">
 				<Col span={8}>
-					<label className="smallLabel">属性类型： </label>
+					<label className="label-s">属性类型： </label>
 						<Select labelInValue style={{ width: 200 }} optionFilterProp="children" notFoundContent="无法找到"
 					onChange={this.handleChange}>
 						<Option value="st">短文本</Option>
@@ -167,33 +167,33 @@ class CategoryAttributePage extends Component {
 				</Col>
 
 				<Col span={8}>
-					<label className="smallLabel">可否为空：</label>
+					<label className="label-s">可否为空：</label>
 					<RadioGroup onChange={this.handleChange} >
 						<Radio key="a" value={1}>是</Radio>
 						<Radio key="b" value={2}>否</Radio>
 					</RadioGroup>
 				</Col>
 				<Col span={8}>
-					<label className="smallLabel">日期： </label>
+					<label className="label-s">日期： </label>
 					<DatePicker onChange={this.handleChange} style={{ width: 200 }}/>
 				</Col>
 			</Row>
 
-			<Row gutter={16} className="largeMarginBottom">
+			<Row gutter={16} className="m-b-m">
 				<Col span={8}>
-					<label className="smallLabel">属性组名称：</label>
+					<label className="label-s">属性组名称：</label>
 					<Input style={{ width: 200 }}/>
 				</Col>
 				<Col span={8}>
-					<label className="smallLabel">属性名称：</label>
+					<label className="label-s">属性名称：</label>
 					<Input style={{ width: 200 }}/>
 				</Col>
 				<Col span={8}>
-					<label className="smallLabel">属性编码：</label>
+					<label className="label-s">属性编码：</label>
 					<Input style={{ width: 200 }}/>
 				</Col>
 			</Row>
-			<Row gutter={16} className="largeMarginBottom">
+			<Row gutter={16} className="m-b-m">
 
 				<Col span={2} offset={19}> 
 					<Button type="primary" onClick={()=>{this.query()}}>查询</Button>

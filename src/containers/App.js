@@ -13,7 +13,7 @@ export default class App extends Component{
 		return (
 			<div className="app ant-layout-aside">
 			    <Header></Header>	
-				<aside className="ant-layout-sider fixedMenu">
+				<aside className="ant-layout-sider fixed-menu">
 					<Sider oNavLinks={routeConfig[0]} initPath={this.props.location.pathname} ></Sider>
 				</aside>
 				<div className="ant-layout-main">
