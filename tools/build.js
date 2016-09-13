@@ -5,12 +5,13 @@
 const path = require('path');
 const shell = require('shelljs');
 const helpers = require('./helpers');
-
 const webpack = require('webpack');
 const config = require('../webpack.dist.config');
+const logger = (...text) =>{console.log('\x1b[36m', ...text ,'\x1b[0m');};
 config.warnings = true;
 
 // Clean folder
+logger('start to build front end resources');
 const buildFolder = path.join(__dirname, '../build');
 shell.rm('-rf', buildFolder);
 shell.mkdir(buildFolder);
@@ -30,11 +31,11 @@ shell.ShellString(indexHtml).to(path.join(buildFolder, 'index.html'));
 
 const start = new Date().getTime();
 webpack(config, (err) => {
-  if (err) console.log(err);
+  if (err) console.error(err);
   else {
     shell.mv(path.join(buildFolder, './static/main.bundle.js'), path.join(buildFolder, `/static/main.bundle.${timestamp}.js`));
     const end = new Date().getTime();
-    console.log('Done, build time: ', end - start, 'ms');
+    logger('Done, build time: ', end - start, 'ms');
   }
 });
 
