@@ -151,7 +151,7 @@ export class ProductInfoPage extends Component {
 
   render() {
     return (
-      <div className="main-area">
+      <div className="main-area product-info">
         <Form horizontal className="ant-advanced-search-form">
           <Row gutter={16}>
             <Col span={6}>
