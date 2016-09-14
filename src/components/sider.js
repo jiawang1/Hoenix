@@ -12,8 +12,10 @@ export default React.createClass({
 		initPath:  PropTypes.string,
 	},
 	getInitialState:function() {
+
+	console.log(this.props.initPath);
     return {
-		current: this.props.initPath?this.props.initPath: '/sample/default-page' ,
+		current: this.props.initPath?this.props.initPath:'/sample/default-page' ,
     };
   },
   handleClick: function(e) {
@@ -34,7 +36,6 @@ export default React.createClass({
 			return <span><Icon type="setting" />{config.text}</span>;
 		}
 	  };
-
 
 	  return aConfigs.reduce((prev, config)=>{
 
@@ -57,7 +58,7 @@ export default React.createClass({
 						   );	
 
 			  }else if (config.component){
-				  prev.push( <Menu.Item key={ _path }> <Link to={_path}>{config.text}</Link> </Menu.Item> );
+				  prev.push( <Menu.Item key={   _path }> <Link to={_path}>{config.text}</Link> </Menu.Item> );
 			  }
 			  else{
 				  console.error("error with router config");	
@@ -78,7 +79,7 @@ export default React.createClass({
 		theme ='dark'
 		className="largePaddingRight"
       >
-	  {this.renderLinks(this.props.oNavLinks.childRoutes)}
+	  {this.renderLinks(this.props.oNavLinks.childRoutes )}
         <SubMenu key="sub1" title={<span><Icon type="setting" />商品管理<span></span></span>}>
           <MenuItemGroup title="商品管理－1">
             <Menu.Item key="1">商品1</Menu.Item>

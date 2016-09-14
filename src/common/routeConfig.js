@@ -13,8 +13,8 @@ export default [{
   childRoutes: [
 	sampleRoute,
     homeRoute,
-    stockLevelRoute,
+  stockLevelRoute,
     // stockFreezeEditRoute,
-    //    { path: '*', name: '404', component: Page404 },
+   { path: '*', name: '404', component: Page404 },
   ],
 }];

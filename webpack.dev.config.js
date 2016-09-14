@@ -16,18 +16,16 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'build/static'),
     filename: '[name].bundle.js',
-    publicPath: '/static',
+    publicPath: '/fivestarstorefront/_admin/',
 	sourceMapFilename: "[name].map"
   },
   devServer: {
     contentBase: path.join(__dirname, 'src'),
 	proxy:{
+		'/**/api/**':{
 		
-		'/api/**':{
-		
-			target: 'http://localhost:8088/',
+			target: 'https://localhost:8088/',
 			secure: false
-
 		}
 	}
   },

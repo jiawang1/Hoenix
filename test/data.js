@@ -6,11 +6,11 @@ const path = require('path');
 
 
 
-http.createServer(
-// {
-// 	 key: fs.readFileSync(path.normalize("/Users/i054410/Documents/develop/self-cert/key.pem")),
-// 	 cert: fs.readFileSync(path.normalize("/Users/i054410/Documents/develop/self-cert/cert.pem"))
-//  }
+https.createServer(
+ {
+ 	 key: fs.readFileSync(path.normalize("/Users/i054410/Documents/develop/self-cert/key.pem")),
+ 	 cert: fs.readFileSync(path.normalize("/Users/i054410/Documents/develop/self-cert/cert.pem"))
+  },
  (req,res)=>{
 
 	console.log(`request come`);
