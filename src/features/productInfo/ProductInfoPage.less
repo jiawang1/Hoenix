@@ -1,5 +1,45 @@
 @import '../../styles/mixins.less';
 
-.product-info-default-page {
-
+.product-info .ant-collapse{
+	border: none;
+	background: none;
 }
+
+.product-info .ant-collapse-content{
+	padding: 0;
+}
+
+.product-info .ant-collapse-content > .ant-collapse-content-box{
+	padding: 0;
+}
+
+.product-info .ant-collapse > .ant-collapse-item > .ant-collapse-header{
+	width: 90px;
+	height: 24px;
+	line-height: 24px;
+	font-size: 14px;
+	color: #57c5f7;
+}
+
+.product-info .ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow{
+	top:-8px;
+}
+
+.product-info h6{
+	font-weight: normal;
+	height: 24px;
+	line-height: 24px;
+	margin-left: 32px;
+}
+
+.product-info .search-price{
+	.ant-input{
+		width: 40%;
+	}
+	.label{
+		width: 10%;
+		display: inline-block;
+		text-align: center;
+	}
+}
+

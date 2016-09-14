@@ -1,0 +1,341 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<style type="text/css">
+			body {
+			  font-family: "Microsoft Yahei","微软雅黑", Tahoma, Helvetica, Arial, sans-serif;
+			  margin: 0 auto;
+			  border: 0 none;
+			  zoom: 100%;
+			  font-size: 16px;
+			  line-height: inherit;
+			  font-style: normal;
+			  background-color: #fff;
+			  position: relative;
+			  width:100%;
+			  color:#333333;
+			}
+
+			* {
+			    margin: 0;
+			    padding: 0;
+			}
+
+			*[hidden]
+				{display:none;
+			}
+
+			h5
+
+			input[type="password"]::-ms-reveal{
+				display: none;
+			}
+
+			input[type="text"]::-ms-clear,
+			input[type="tel"]::-ms-clear,
+			input[type="number"]::-ms-clear{
+				display: none;
+			}
+
+			img{
+				border:none;
+			}
+
+			.content{
+			  width:100%; 
+			  height:100%;
+			  padding-top:200px;
+			  box-sizing:border-box;
+			  -moz-box-sizing:border-box;
+			  -webkit-box-sizing:border-box;
+			  -o-box-sizing:border-box;
+			  -ms-box-sizing:border-box;
+			  background: -ms-linear-gradient(top, #0571b1,  #fff);        /* IE 10 */
+			  background:-moz-linear-gradient(top,#0571b1,#fff);/*火狐*/ 
+			  background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#0571b1), to(#fff));/*谷歌*/ 
+			  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0571b1), to(#fff));      /* Safari 4-5, Chrome 1-9*/
+			  background: -webkit-linear-gradient(top, #0571b1, #fff);   /*Safari5.1 Chrome 10+*/
+			  background: -o-linear-gradient(top, #0571b1, #fff);  /*Opera 11.10+*/
+			}
+
+			.container{ 
+			  margin: 0 auto;
+			  width: 775px;
+			  -webkit-box-shadow: 0 10px 5px;  
+			  -moz-box-shadow: 0 10px 5px;  
+			  box-shadow: 0 5px 10px; 
+			}
+
+			.content img{
+			  width: 475px;
+			  height: 300px;
+			  float: left;
+			}
+
+			.field{
+			  background: #fff;
+			  float: left;
+			  width: 240px;
+			  height: 240px;
+			  padding: 30px;
+			}
+
+			.clear{
+			  clear: both;
+			}
+
+			.field h3{
+			  width:100%;
+			  text-align: center;
+			  margin-bottom: 30px;
+			}
+
+			.field-input.second{
+			  margin-bottom: 0;
+			}
+
+			.field-input{
+			  width: 100%;
+			  margin-bottom: 30px;
+			  position: relative;
+			  display: inline-block;
+			  padding: 4px 7px;
+			  width: 100%;
+			  height: 28px;
+			  cursor: text;
+			  font-size: 12px;
+			  line-height: 1.5;
+			  color: #666;
+			  background-color: #fff;
+			  background-image: none;
+			  border: 1px solid #d9d9d9;
+			  border-radius: 6px;
+			  -webkit-transition: border 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), box-shadow 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+			  transition: border 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), box-shadow 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+			}
+
+			.field-input::-moz-placeholder {
+			  color: #ccc;
+			  opacity: 1;
+			}
+
+			.field-input:-ms-input-placeholder {
+			  color: #ccc;
+			}
+
+			.field-input::-webkit-input-placeholder {
+			  color: #ccc;
+			}
+
+			.field-input:hover {
+			  border-color: #57c5f7;
+			}
+
+			.field-input:focus {
+			  border-color: #57c5f7;
+			  outline: 0;
+			  box-shadow: 0 0 0 2px rgba(45, 183, 245, 0.2);
+			}
+
+			.field input[type="checkbox"]{
+			  cursor: pointer;
+			}
+
+			.field label{
+			  font-size: 12px;
+			  cursor: pointer;
+			}
+
+			.field button{
+			  display: block;
+			  width: 100%;
+			  cursor: pointer;
+			}
+
+			.field-btn {
+			  color: #fff;
+			  background-color: #2db7f5;
+			  border-color: #2db7f5;
+			  display: inline-block;
+			  margin-bottom: 0;
+			  font-weight: 500;
+			  text-align: center;
+			  vertical-align: middle;
+			  -ms-touch-action: manipulation;
+			      touch-action: manipulation;
+			  cursor: pointer;
+			  background-image: none;
+			  border: 1px solid transparent;
+			  white-space: nowrap;
+			  line-height: 1.5;
+			  padding: 4px 15px;
+			  font-size: 12px;
+			  border-radius: 6px;
+			  -webkit-user-select: none;
+			     -moz-user-select: none;
+			      -ms-user-select: none;
+			          user-select: none;
+			  -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+			  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+			  -webkit-transform: translate3d(0, 0, 0);
+			          transform: translate3d(0, 0, 0);
+			}
+			.ant-btn-primary > a:only-child {
+			  color: currentColor;
+			}
+			.ant-btn-primary > a:only-child:after {
+			  content: '';
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  bottom: 0;
+			  right: 0;
+			  background: transparent;
+			}
+			.field-btn:hover {
+			  color: #ffffff;
+			  background-color: #57c5f7;
+			  border-color: #57c5f7;
+			}
+
+			.field-btn > .anticon {
+			  line-height: 1;
+			}
+			.ant-btn-primary:hover > a:only-child,
+			.ant-btn-primary:focus > a:only-child {
+			  color: currentColor;
+			}
+			.ant-btn-primary:hover > a:only-child:after,
+			.ant-btn-primary:focus > a:only-child:after {
+			  content: '';
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  bottom: 0;
+			  right: 0;
+			  background: transparent;
+			}
+			.field-btn:active,
+			.field-btn.active {
+			  color: #f2f2f2;
+			  background-color: #2baee9;
+			  border-color: #2baee9;
+			}
+			.ant-btn-primary:active > a:only-child,
+			.ant-btn-primary.active > a:only-child {
+			  color: currentColor;
+			}
+			.ant-btn-primary:active > a:only-child:after,
+			.ant-btn-primary.active > a:only-child:after {
+			  content: '';
+			  position: absolute;
+			  top: 0;
+			  left: 0;
+			  bottom: 0;
+			  right: 0;
+			  background: transparent;
+			}
+
+
+
+			.field-btn,
+			.field-btn:active,
+			.field-btn:focus {
+			  outline: 0;
+			}
+			.field-btn:not([disabled]):hover {
+			  text-decoration: none;
+			}
+			.field-btn:not([disabled]):active {
+			  outline: 0;
+			  -webkit-transition: none;
+			  transition: none;
+			}
+
+			.field-btn-clicked:after {
+			  content: '';
+			  position: absolute;
+			  top: -1px;
+			  left: -1px;
+			  bottom: -1px;
+			  right: -1px;
+			  border-radius: inherit;
+			  border: 0 solid #2db7f5;
+			  opacity: 0.4;
+			  -webkit-animation: buttonEffect 0.32s ease forwards;
+			          animation: buttonEffect 0.32s ease forwards;
+			  display: block;
+			}
+			@-webkit-keyframes buttonEffect {
+			  to {
+			    opacity: 0;
+			    top: -5px;
+			    left: -5px;
+			    bottom: -5px;
+			    right: -5px;
+			    border-width: 5px;
+			  }
+			}
+			@keyframes buttonEffect {
+			  to {
+			    opacity: 0;
+			    top: -5px;
+			    left: -5px;
+			    bottom: -5px;
+			    right: -5px;
+			    border-width: 5px;
+			  }
+			}
+
+			.field-btn-error{
+
+			}
+
+			.field-btn-error,
+			.field-btn-error:hover,
+			.field-btn-error:focus {
+			  border-color: #f50;
+			  box-shadow: 0 0 0 2px rgba(255, 85, 0, 0.2);
+			}
+
+			.error{
+			  width:100%;
+			  height: 30px;
+			  line-height: 30px;
+			  font-size: 12px;
+			  color:#f50;
+			}
+
+			.error p{
+			  display: none;
+			}
+		</style>
+		<script>
+			function btn_click(){
+				document.getElementById('field-btn').className = "field-btn field-btn-clicked"
+			}
+			function btn_mouseout(){
+				document.getElementById('field-btn').className = "field-btn"
+			}
+		</script>
+	</head>
+	<title>登录</title>
+	<body>
+		<div class="content">			
+			<div class="container">
+				<img src="image/operation.png" />		
+				<div class="field">
+					<h3>运&nbsp;营&nbsp;管&nbsp;理&nbsp;平&nbsp;台</h5>
+					<input class="field-input" type="text" placeholder="用户名" />
+					<input class="field-input second" type="password" placeholder="密码" />
+					<input type="checkbox" id="remenber"/>
+					<label for="remenber" >记住密码</label>
+					<div class="error"><p>密码错误</p></div>
+					<button id="field-btn" class="field-btn" onmouseout="btn_mouseout()" onclick="btn_click()">登录</button>
+				</div>	
+				<div class="clear"></div>	
+			</div>
+		</div>
+	</body>
+</html>
