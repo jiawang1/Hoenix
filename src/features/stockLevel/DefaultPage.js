@@ -43,24 +43,24 @@ export class DefaultPage extends Component {
             <Col span={8}>
               <FormItem
                 label="商品编码"
-                labelCol={{ span: 10 }}
-                wrapperCol={{ span: 14 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>
             </Col>
             <Col span={8}>
               <FormItem
                 label="商品编码"
-                labelCol={{ span: 10 }}
-                wrapperCol={{ span: 14 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>
             </Col>
             <Col span={8}>
               <FormItem
                 label="商品编码"
-                labelCol={{ span: 10 }}
-                wrapperCol={{ span: 14 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>              
             </Col>
@@ -69,24 +69,24 @@ export class DefaultPage extends Component {
             <Col span={8}>
               <FormItem
                 label="商品编码"
-                labelCol={{ span: 10 }}
-                wrapperCol={{ span: 14 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>
             </Col>
             <Col span={8}>
               <FormItem
                 label="商品编码"
-                labelCol={{ span: 10 }}
-                wrapperCol={{ span: 14 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>
             </Col>
             <Col span={8}>
               <FormItem
                 label="商品编码"
-                labelCol={{ span: 10 }}
-                wrapperCol={{ span: 14 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>              
             </Col>

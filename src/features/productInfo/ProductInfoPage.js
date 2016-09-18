@@ -112,7 +112,7 @@ const columns = [
 
     {
       title: '供应商名称',
-      dataIndex: '16',
+      dataIndex: '15',
     }, 
 
     {
@@ -157,20 +157,20 @@ export class ProductInfoPage extends Component {
             <Col span={6}>
               <FormItem
                 label="商品编码"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>
               <FormItem
                 label="品牌"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>
               <FormItem
                 label="商品阶段"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Select size="default" onChange={handleChange}>
                   <Option value="o1">新品</Option>
                   <Option value="o2">成长</Option>
@@ -183,14 +183,14 @@ export class ProductInfoPage extends Component {
             <Col span={6}>
               <FormItem
                 label="商品名称"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>
               <FormItem
                 label="商家"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Select showSearch size="default" optionFilterProp="children" notFoundContent="无法找到" onChange={handleChange}>
                   <Option value="dynamic">动态获取</Option>
                   <Option value="other">其他</Option>
@@ -200,28 +200,28 @@ export class ProductInfoPage extends Component {
             <Col span={6}>
               <FormItem
                 label="供应商"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>
               <FormItem
                 label="型号"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>
             </Col>
             <Col span={6}>
               <FormItem
                 label="工业分类"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               </FormItem>
               <FormItem
                 label="虚拟商品"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <RadioGroup>
                   <Radio key="a" value={1}>是</Radio>
                   <Radio key="b" value={2}>否</Radio>
@@ -234,8 +234,8 @@ export class ProductInfoPage extends Component {
             <Col span={6}> 
               <FormItem
                 label="工业分类"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Select size="default" onChange={handleChange}>
                   <Option value="five">五星享货</Option>
                   <Option value="offline">线下</Option>
@@ -247,16 +247,16 @@ export class ProductInfoPage extends Component {
             <Col span={6}>
               <FormItem
                 label="区域"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Cascader options={options} onChange={this.onCascadeChange} placeholder=""/>
               </FormItem>
             </Col>
             <Col span={6}>
               <FormItem
                 label="门店"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Select size="default" onChange={handleChange}>
                   <Option value="o1">中央路店</Option>
                   <Option value="o2">山西路店</Option>
@@ -266,8 +266,8 @@ export class ProductInfoPage extends Component {
             <Col span={6} className="search-price">              
               <FormItem
                 label="价格"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}>
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
                 <Input size="default" />
               <label className="label">－</label>
               <Input size="default" />
@@ -280,24 +280,24 @@ export class ProductInfoPage extends Component {
                 <Col span={6}>
                   <FormItem
                     label="属性一"
-                    labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}>
+                    labelCol={{ span: 9 }}
+                    wrapperCol={{ span: 15 }}>
                     <Input size="default" />
                   </FormItem>
                 </Col>
                 <Col span={6}>
                   <FormItem
                     label="属性二"
-                    labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}>
+                    labelCol={{ span: 9 }}
+                    wrapperCol={{ span: 15 }}>
                     <Input size="default" />
                   </FormItem>
                 </Col>
                 <Col span={6}>
                   <FormItem
                     label="属性三"
-                    labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}>
+                    labelCol={{ span: 9 }}
+                    wrapperCol={{ span: 15 }}>
                     <Input size="default" />
                   </FormItem>
                 </Col>
