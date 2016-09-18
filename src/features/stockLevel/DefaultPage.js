@@ -14,13 +14,7 @@ export class DefaultPage extends Component {
     stockLevel: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
-
-
-  
-    
-      
-  
-  
+ 
   render() {
 
     return (
