@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import {getJson} from './../../common/commonAction.js';
+import {getJson, batchGetJson} from './../../common/commonAction.js';
 import {
   DEMO_COUNT,
   RESET_COUNT,
@@ -20,8 +20,9 @@ export const resetCount = ()=> {
   };
 };
 
-export const queryAttribute = () => (dispatch)=>getJson({url: './api/demo'})
-      .then(response => response.json()).then(json => dispatch(receiveAtributes(json))).catch((error)=>{console.log(error)});
+export const queryAttribute = () => (dispatch)=>getJson({url: './api/demo'}).then(json => dispatch(receiveAtributes(json))).catch((error)=>{console.log(error)});
+
+//export const queryAttribute = () => (dispatch)=>batchGetJson([{url: './api/demo'}]).then(aJson => dispatch(receiveAtributes(aJson[0]))).catch((error)=>{console.log(error)});
 
 export const receiveAtributes = (data) => {
 	return {

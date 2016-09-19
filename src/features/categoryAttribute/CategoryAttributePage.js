@@ -129,8 +129,8 @@ const RadioGroup = Radio.Group,
 
 			render() {
 				return (
+									<div  className= "main-area">
 					<Form horizontal className="ant-advanced-search-form">
-					<div  className= "main-area">
 					<Row gutter={16} className="m-b-m">
 
 					<Col span={8}>
@@ -253,14 +253,15 @@ const RadioGroup = Radio.Group,
 					<Button type="ghost">重置</Button>
 					</Col>
 					</Row>
+					</Form>
+
 					<Row gutter={16}>
 					<ProductGrid aDataSource={ this.props.home.aData} aColumn={columns}></ProductGrid>
 
 					</Row>
 					<ModalDialog ref={(ref) => CategoryAttributePage.modal= ref}/>
 					</div>
-					</Form>
-
+			
 				);
 			}
 
