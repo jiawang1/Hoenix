@@ -45,54 +45,74 @@
 			.content{
 			  width:100%; 
 			  height:100%;
-			  padding-top:200px;
+			  padding-top:150px;
 			  box-sizing:border-box;
 			  -moz-box-sizing:border-box;
 			  -webkit-box-sizing:border-box;
 			  -o-box-sizing:border-box;
 			  -ms-box-sizing:border-box;
-			  background: -ms-linear-gradient(top, #0571b1,  #fff);        /* IE 10 */
-			  background:-moz-linear-gradient(top,#0571b1,#fff);/*火狐*/ 
-			  background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#0571b1), to(#fff));/*谷歌*/ 
-			  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0571b1), to(#fff));      /* Safari 4-5, Chrome 1-9*/
-			  background: -webkit-linear-gradient(top, #0571b1, #fff);   /*Safari5.1 Chrome 10+*/
-			  background: -o-linear-gradient(top, #0571b1, #fff);  /*Opera 11.10+*/
+			  background: url('image/business.jpg') no-repeat;
+			  background-size:100%;			   
 			}
 
 			.container{ 
 			  margin: 0 auto;
-			  width: 775px;
-			  -webkit-box-shadow: 0 10px 5px;  
-			  -moz-box-shadow: 0 10px 5px;  
-			  box-shadow: 0 5px 10px; 
-			}
-
-			.content img{
-			  width: 475px;
-			  height: 300px;
-			  float: left;
-			}
-
-			.field{
 			  background: #fff;
-			  float: left;
-			  width: 240px;
-			  height: 240px;
+			  width: 350px;
+			  height: 300px;
 			  padding: 30px;
+			  filter:alpha(opacity=95);  
+      			-moz-opacity:0.95;  
+      			-khtml-opacity: 0.95;  
+      			opacity: 0.95;  
+			  border-radius: 20px;
+			  -moz-border-radius: 20px;
+			  -webkit-border-radius: 20px;
 			}
 
-			.clear{
-			  clear: both;
-			}
-
-			.field h3{
+			h3{
 			  width:100%;
 			  text-align: center;
 			  margin-bottom: 30px;
 			}
 
+			.field{
+				position: relative;
+			}
+
+			.field i{
+				width:38px;
+				height:38px;
+				display: inline-block;
+				position: absolute;
+				top:8px;
+				left: 8px;
+				z-index: 20;
+
+			}
+
+			.field .user{
+				background: url('image/user-60x60.png') no-repeat;
+				background-size:60%;	
+			}
+
+			.field .user-focus{
+				background: url('image/user-blue-60x60.png') no-repeat;
+				background-size:60%;
+			}
+
+			.field .psw{
+				background: url('image/psw-60x60.png') no-repeat;
+				background-size:60%;	
+			}
+
+			.field .psw-focus{
+				background: url('image/psw-blue-60x60.png') no-repeat;
+				background-size:60%;
+			}
+
 			.field-input.second{
-			  margin-bottom: 0;
+			  margin-bottom: 5px;
 			}
 
 			.field-input{
@@ -100,11 +120,11 @@
 			  margin-bottom: 30px;
 			  position: relative;
 			  display: inline-block;
-			  padding: 4px 7px;
+			  padding: 4px 7px 4px 34px;
 			  width: 100%;
-			  height: 28px;
+			  height: 40px;
 			  cursor: text;
-			  font-size: 12px;
+			  font-size: 16px;
 			  line-height: 1.5;
 			  color: #666;
 			  background-color: #fff;
@@ -138,16 +158,16 @@
 			  box-shadow: 0 0 0 2px rgba(45, 183, 245, 0.2);
 			}
 
-			.field input[type="checkbox"]{
+			.container input[type="checkbox"]{
 			  cursor: pointer;
 			}
 
-			.field label{
-			  font-size: 12px;
+			.container label{
+			  font-size: 14px;
 			  cursor: pointer;
 			}
 
-			.field button{
+			.container button{
 			  display: block;
 			  width: 100%;
 			  cursor: pointer;
@@ -156,6 +176,10 @@
 			.field-btn {
 			  color: #fff;
 			  background-color: #2db7f5;
+			  filter:alpha(opacity=100);  
+      			-moz-opacity: 1.0;  
+      			-khtml-opacity: 1.0;  
+      			opacity: 1.0; 
 			  border-color: #2db7f5;
 			  display: inline-block;
 			  margin-bottom: 0;
@@ -168,9 +192,9 @@
 			  background-image: none;
 			  border: 1px solid transparent;
 			  white-space: nowrap;
-			  line-height: 1.5;
+			  line-height: 1.8;
 			  padding: 4px 15px;
-			  font-size: 12px;
+			  font-size: 16px;
 			  border-radius: 6px;
 			  -webkit-user-select: none;
 			     -moz-user-select: none;
@@ -237,8 +261,6 @@
 			  background: transparent;
 			}
 
-
-
 			.field-btn,
 			.field-btn:active,
 			.field-btn:focus {
@@ -301,17 +323,31 @@
 
 			.error{
 			  width:100%;
-			  height: 30px;
-			  line-height: 30px;
-			  font-size: 12px;
+			  height: 40px;
+			  line-height: 40px;
+			  font-size: 14px;
 			  color:#f50;
 			}
 
 			.error p{
-			  display: none;
+			  
 			}
 		</style>
 		<script>
+			function input1_focus(){
+				document.getElementById('user').className = "user user-focus"
+			}
+			function input1_blur(){
+				document.getElementById('user').className = "user"
+			}
+
+			function input2_focus(){
+				document.getElementById('psw').className = "psw psw-focus"
+			}
+			function input2_blur(){
+				document.getElementById('psw').className = "psw"
+			}
+
 			function btn_click(){
 				document.getElementById('field-btn').className = "field-btn field-btn-clicked"
 			}
@@ -323,18 +359,20 @@
 	<title>登录</title>
 	<body>
 		<div class="content">			
-			<div class="container">
-				<img src="image/operation.png" />		
-				<div class="field">
-					<h3>运&nbsp;营&nbsp;管&nbsp;理&nbsp;平&nbsp;台</h5>
-					<input class="field-input" type="text" placeholder="用户名" />
-					<input class="field-input second" type="password" placeholder="密码" />
-					<input type="checkbox" id="remenber"/>
-					<label for="remenber" >记住密码</label>
-					<div class="error"><p>密码错误</p></div>
-					<button id="field-btn" class="field-btn" onmouseout="btn_mouseout()" onclick="btn_click()">登录</button>
-				</div>	
-				<div class="clear"></div>	
+			<div class="container">						
+				<h3>运&nbsp;营&nbsp;管&nbsp;理&nbsp;平&nbsp;台</h5>
+					<div class="field">
+						<i class="user" id="user"></i>
+						<input class="field-input" type="text" placeholder="请输入用户名" onfocus="input1_focus()" onblur="input1_blur()"/>
+					</div>
+					<div class="field">
+						<i class="psw" id="psw"></i>
+						<input class="field-input second" type="password" placeholder="请输入密码" onfocus="input2_focus()" onblur="input2_blur()"/>
+					</div>
+				<input type="checkbox" id="remenber"/>
+				<label for="remenber" >记住密码</label>
+				<div class="error"><p>密码错误</p></div>
+				<button id="field-btn" class="field-btn" onmouseout="btn_mouseout()" onclick="btn_click()">登&nbsp;&nbsp;&nbsp;录</button>						
 			</div>
 		</div>
 	</body>
