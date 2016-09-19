@@ -248,10 +248,10 @@ class CategoryAttributePage extends Component {
 							</Col>
 						</Row>
 						<Row className="m-b-m">
-							<Col span={2} offset={19}> 
+							<Col span={2} offset={20}>
 								<Button type="primary" onClick={()=>{this.query()}}>查询</Button>
 							</Col>
-							<Col span={3}>
+							<Col span={2}>
 								<Button type="ghost">重置</Button>
 							</Col>
 						</Row>
