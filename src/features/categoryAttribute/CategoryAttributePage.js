@@ -129,7 +129,7 @@ class CategoryAttributePage extends Component {
 
 	render() {
 		return (
-			<div  className= "main-area category-attr">
+			<div className= "main-area category-attr">
 				<div className="attr-tree-l">
 		          <Tree>
 		            <TreeNode title="空调" key="0-0">

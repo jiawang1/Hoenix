@@ -2,7 +2,7 @@
 
 // Main Area
 
-@main-area-padding:20px;
+@main-area-padding:10px;
 
 // Different Size Margin
 @margin-xs: 5px;
@@ -17,12 +17,17 @@
 @padding-l: 40px;
 
 // Different Size Label
-
 // no more than 8 words
 @label-s: 100px;
 
+// Color Settings
+// background grey
+@bg-grey: #eee;
+
 .main-area{
 	padding: @main-area-padding;
+	background: @bg-grey;
+	height: 100%;
 }
 
 // 'margin/padding'-'top/bottom/left/right'-'xs/s/m/l/xl'
@@ -110,6 +115,8 @@
 .search-field-r{
 	float: right;
 	width: 80%;
+	background: #fff;
+	padding: @padding-s
 }
 
 .clr{

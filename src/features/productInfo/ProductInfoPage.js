@@ -112,7 +112,7 @@ const columns = [
 
     {
       title: '供应商名称',
-      dataIndex: '15',
+      dataIndex: '16',
     }, 
 
     {
