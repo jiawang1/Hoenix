@@ -90,7 +90,7 @@ class DefaultPage extends Component {
               <Panel header="css全局变量" key="3">
                 <p>css全局变量主要在mixins.less中定义，需注释变量含义。</p>
               </Panel>
-              <Panel header="css页面布局" key="3">
+              <Panel header="css页面布局" key="4">
                 <p>1 典型查询条件＋结果页面</p>
                 <ul>
                   <li>页面无纵向分隔情况：查询条件为四列显示Col span=6; 页面有纵向分隔情况（如工业分类树）：查询条件为三列显示Col span=8</li>
