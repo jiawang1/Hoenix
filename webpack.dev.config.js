@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-
+const defaultContext = '/fivestaradminstorefront';
 // Webpak Dashboard
 var Dashboard = require('webpack-dashboard');
 var DashboardPlugin = require('webpack-dashboard/plugin');
@@ -16,15 +16,15 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'build/static'),
     filename: '[name].bundle.js',
-    publicPath: '/fivestarstorefront/_admin/',
+    publicPath: `${defaultContext}/_admin/`,
 	sourceMapFilename: "[name].map"
   },
   devServer: {
     contentBase: path.join(__dirname, 'src'),
 	proxy:{
-		'/**/api/**':{
-		
-			target: 'https://localhost:8088/',
+		'!(**/_admin/**|/_tmp/**|/**/_admin/|/_tmp/*/**)':{
+			//target: 'https://localhost:9002',
+			target: 'https://localhost:8079',
 			secure: false
 		}
 	}
@@ -36,7 +36,7 @@ module.exports = {
     new webpack.DefinePlugin({
       ENV: '"dev"',
     }),
-    new DashboardPlugin(dashboard.setData)
+	new DashboardPlugin(dashboard.setData),
   ],
   module: {
     loaders: [
@@ -45,7 +45,7 @@ module.exports = {
         exclude: /node_modules|build/,
         loader: 'react-hot-loader!babel-loader?cacheDirectory=true'
       }, {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        test: /\.(ttf|eot|woff|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader'
       }, {
         test: /\.less$/,

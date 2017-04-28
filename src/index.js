@@ -5,7 +5,7 @@ import { hashHistory, Router } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import configStore from './common/configStore';
-import routeConfig from './common/routeConfig';
+import {routeConfig} from './common/routeConfig';
 
 const store = configStore();
 const history = syncHistoryWithStore(hashHistory, store);
@@ -16,7 +16,7 @@ document.body.appendChild(root);
 
 render(
   <Provider store={store}>
-    <Router history={history} routes={routeConfig} />
+	  <Router history={history} routes={routeConfig(store)} />
   </Provider>,
   root
 );

@@ -12,9 +12,9 @@ module.exports = {
     ],
   },
   output: {
-    path: path.join(__dirname, 'build/static'),
-    filename: '[name].bundle.js',
-    publicPath: '/static/'
+	  //    path: path.join(__dirname, 'build/static'),
+	  //    filename: '[name].bundle.js',
+	  //	publicPath: '/fivestaradminstorefront/_admin/static/'
   },
   plugins: [
     new LodashModuleReplacementPlugin(),

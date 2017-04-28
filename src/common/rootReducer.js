@@ -5,6 +5,7 @@ import sampleReducer from '../features/sample/reducer';
 import productInfoReducer from '../features/productInfo/reducer';
 import stockLevelReducer from '../features/stockLevel/reducer';
 import stockFreezeReducer from '../features/stockFreeze/reducer';
+import authContext from '../containers/contextState.js';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   sample: sampleReducer,
   productInfo: productInfoReducer,
   stockLevel: stockLevelReducer,
+  authContext,
   stockFreeze: stockFreezeReducer,
 });
 

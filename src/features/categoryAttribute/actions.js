@@ -1,59 +1,127 @@
 import 'whatwg-fetch';
-import {getJson, batchGetJson} from './../../common/commonAction.js';
+import {getType} from './../../common/helper.js';
+import {getJson, getContent,showError, getResponseThunk} from './../../common/commonAction.js';
 import {
   DEMO_COUNT,
   RESET_COUNT,
   QUERY_ATTRIBUTE,
   GET_TABLE_META,
-  RECEIEVE_ATTRIBUTE
+  ATTRIBUTE_PAGEMETA,
+  CATEGORY_LOADED,
+  CATEGORY_ATTRIBUTE_EDIT_TEST_ACTION,
+  RECEIEVE_ATTRIBUTE,
+  RECEIVE_CATEGORY_ATTRIBUTE,
+  UPDATE_CATEGORY
 } from './constants';
 
-export const demoCount = ()=>{
-  return {
-    type: DEMO_COUNT,
-  };
-};
 
-export const resetCount = ()=> {
-  return {
-    type: RESET_COUNT,
-  };
-};
+export const queryAttribute = () =>  getResponseThunk(receiveAtributes, '/category/categoryAttribute');
 
-export const queryAttribute = () => (dispatch)=>getJson({url: './api/demo'}).then(json => dispatch(receiveAtributes(json))).catch((error)=>{console.log(error)});
+export const queryCatetoryAttribute = () =>  getResponseThunk(receiveCategoryAtributes, '/category/categoryAttribute');
 
 //export const queryAttribute = () => (dispatch)=>batchGetJson([{url: './api/demo'}]).then(aJson => dispatch(receiveAtributes(aJson[0]))).catch((error)=>{console.log(error)});
 
-export const receiveAtributes = (data) => {
+/*   thunk used to get attribute page meta, dispatch error message to global error if any exception  */
+export const retrievePageMeta = ()=>(dispatch, getState)=>{  
+
+	var {home} = getState();
+
+	if(home.attributePageMeta){
+		
+		dispatch(receivePageMeta(home.attributePageMeta));
+	}else{
+		return getJson({url: '/category/categoryAttribute/pageMeta'}).then(json=>{ 
+
+			if(json.status === 'success'){
+				dispatch(receivePageMeta(getPagemeta(getContent(json))));
+			}else{
+				dispatch(showError(json.map.__message__));
+			}
+		}); 
+	}
+};
+
+export const receiveAtributes = (data)=>{
 	return {
 		type:RECEIEVE_ATTRIBUTE,
 		data: data
 	};
 };
 
+export const receiveCategoryAtributes = (data)=>{
+	return {
+		type: RECEIVE_CATEGORY_ATTRIBUTE,
+		data: data
+	};
+};
 
 
-//  return {
-//    type: QUERY_ATTRIBUTE,
-//	aData: (()=>{
-//			const data = [];
-//			for(let i = 0; i < 100 ; i++){
-//			
-//				data.push({
-//					channel: `srore ${i}`,
-//					attributeGroup: `group ${Math.ceil(i/10)}`,
-//					attrbuteCode: `code ${i}`,
-//					attributeName: `attribute${i}`,
-//					attributeType: `type${i}`,
-//					empty: i%2===0?'Yes':'No',
-//					createTime: new Date().toString(),
-//					effect:i%2===0?'Yes':'No',
-//				});
-//			}
-//			return data;
-//		})()
-//	
-//  };
+/*  action creator for attribute page meta   */
+
+export const receivePageMeta = meta=>{
+	return {
+		type: ATTRIBUTE_PAGEMETA,
+		meta : meta
+	};
+};
+
+const getPagemeta = content=>content.pageMeta;
+
+ const updateCategory = (json)=>{
+	return {
+		type:UPDATE_CATEGORY,
+		json: json
+	};
+};
+const __fetchCategory= (id = null, dispatch, path)=>getJson({ url:'/category/retrieveCategory', param:{ 'code': id , 'path':path }}).then(json=>{ 
+	
+	if(json.status === 'success'){
+		dispatch(updateCategory(json));
+	}else{
+		dispatch(showError(json.map.__message__));	
+	}
+		return json;
+}).catch(error=>console.error(error));
+
+const __findCategory = (path, category) => {
+
+	var aCodes = path.split('/');
+	var isLoaded = true;
+
+	aCodes.forEach((code) => {
+
+		if (category[code]) {
+			category = category[code];
+		}
+	});
+
+	return Object.keys(category).some(key => { return getType(category[key]) === 'Object' });
+
+};
+
+export const retrieveCategory = (ops) =>(dispatch, getState)=>{
+	
+	var { home } = getState();
+
+	if(home.category && ops){
+		var __category = Object.assign({},home.category);
+		
+		if(!ops.path || !__findCategory(ops.path, __category)){
+			return 	__fetchCategory(ops.code,dispatch,ops.path);
+		}else{
+			return Promise.resolve({});
+		}
+	}else{
+		let _id = ops ===undefined?null:ops.code;
+		return __fetchCategory(_id,dispatch);
+	}
+};
+
+
+
+
+
+
 
 
 

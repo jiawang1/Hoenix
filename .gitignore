@@ -3,3 +3,4 @@
 **/node_modules/**
 **/src/_temp/**
 **/build/**
+**src/_tmp/**

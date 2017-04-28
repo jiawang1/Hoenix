@@ -7,20 +7,20 @@ export class ProductGrid extends Component{
 		super(props);
 		this.rowSelection = {
 			onSelect:function(record, selected, selectedRows){
-				console.log(record);
 			},
 
 			handleChange:function(data){
-				console.log(data);
 			}
 		};
 	}
 
 	render(){
-		let {aColumn,aDataSource } =  this.props;
+		let {aColumn,aDataSource,size,pagination,loading,onChange,total} =  this.props;
 		return (
 			<div>
-			<Table rowSelection={this.rowSelection} columns={aColumn} dataSource={aDataSource} />
+				<Table size={size?size: "middle"} rowSelection={this.rowSelection}
+				columns={aColumn} dataSource={aDataSource} pagination={pagination} loading={loading}
+				onChange={onChange} />
 			</div>
 		);
 	}
@@ -28,6 +28,10 @@ export class ProductGrid extends Component{
 
 ProductGrid.propTypes = {
 	aDataSource:PropTypes.array.isRequired,
-	aColumn: PropTypes.array.isRequired
+	aColumn: PropTypes.array.isRequired,
+	pagination:  PropTypes.object.isRequired,
+	onChange:PropTypes.func.isRequired,
+	loading: PropTypes.bool,
+	size: PropTypes.string,
 
 };

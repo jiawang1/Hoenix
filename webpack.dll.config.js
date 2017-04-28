@@ -13,6 +13,8 @@ module.exports = {
       'redux',
       'redux-logger',
       'redux-thunk',
+	  'antd',
+	  'whatwg-fetch'
     ],
   },
   plugins: [

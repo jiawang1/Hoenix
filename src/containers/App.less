@@ -10,17 +10,42 @@
 		margin: 20px 20px 0;
 	  }
 
+	  .ant-layout-main{
+	   	// transform: translate3d(0, 0, 0);
+		 margin-left: 224px;
+		 transition: margin-left .4s;
+		
+	  }
 
+	.fixed-menu{
+		position: fixed;
+		background: none;
+		padding-bottom: 0;
+		top: 66px;
+		overflow: visible;
+		transition: all .4s;
+		padding-bottom:66px;
+	//	z-index:1;
+		//transform: translate3d(-224px, 0, 0);
+
+	}
 	 .fixed-menu{
-//		position: fixed;
-//		background: none;
-//		padding-bottom: 0;
-	//	margin-top: 66px;
-	//	margin-bottom: -66px;
 		.ant-menu{
-			margin-bottom: 0;
+			 //margin-bottom: 66px;
 		}
 
 	 } 
+}
+
+.app.hide-menu{
+			.fixed-menu{
+				transform: translate3d(-224px, 0, 0);
+			}
+
+			.ant-layout-main{
+			  //transform: translate3d(-224px, 0, 0);
+			  margin-left: 0;
+			}
 
 }
+
