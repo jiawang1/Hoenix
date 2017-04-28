@@ -16,7 +16,6 @@ const CatTree = connect(state => ({
 	dispatch => ({ retrieveCategory: bindActionCreators(actions.retrieveCategory, dispatch) })
 )(CategoryTree);
 
-
 class CategoryAttributePage extends Component {
 	static propTypes = {
 		home: PropTypes.object.isRequired,
