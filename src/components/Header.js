@@ -7,7 +7,7 @@ export default function Header ({clickHandler,userName, iconType}){
 		return (
 			<div className="test">
 					<div className="logo-image-container">
-						<img className="logoImage" src={require("../image/fiveStar.png") } />
+						<img className="logoImage" src={require("../image/logo.png") } />
 						<Icon className="menu-icon" type={iconType} onClick={clickHandler} />
 					</div>
 					<div className="user-info-container">
