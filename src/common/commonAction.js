@@ -8,7 +8,6 @@ var rootContext = null;
 (()=>{
 	if(window &&window.document){
 	rootContext = document.getElementById("context-root").getAttribute('value');
-
 }})();
 
 const parseJson = (res) => {
@@ -19,7 +18,6 @@ const parseJson = (res) => {
 const __fetch = (_method)=>(option)=>{
 
 		let ops = Object.assign({},{
-		//	mode:'no-cors',
 			credentials: 'same-origin',
 		},option, {method: _method});
 
@@ -66,7 +64,6 @@ const __fetch = (_method)=>(option)=>{
 						reject('not in browser environment, can not redirect');
 					}
 				}else if(response.headers.get('__authorization__') === 'failed'){
-					
 					if(window){
 						window.location.href = window.location.href.replace(/^(.*\/#\/)(.*)/, "$1" + NO_AUTH_PATH);
 					}
@@ -81,11 +78,8 @@ const __fetch = (_method)=>(option)=>{
 	};
 
 export const get = __fetch('GET');
-
 export const post = __fetch('POST');
-
 export const getJson = (option)=>{
-
 	if(option.headers){
 		option.headers['Accept'] = 'application/json';
 	}else{
@@ -134,7 +128,6 @@ export const showError = error=>{
 };
 
 export const removeError = key =>{
-
 	return {
 		type: REMOVE_GLOBAL_ERROR,
 		key : key

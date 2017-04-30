@@ -1,7 +1,7 @@
 # Hoenix
 UX boilerplate for Admin page base on React, Redux and Ant Design widget.
 
-## Quick Start
+### Quick Start
 You can get source code from git or just down load code. Then run
 
 ````
@@ -14,7 +14,7 @@ You can get source code from git or just down load code. Then run
 ````
 then open url http://localhost:6076/hoenix/_admin
 
-## Features
+### Features
 
-## License
+### License
 MIT

@@ -1,10 +1,8 @@
 import App from '../containers/App';
-
 import { Page404 } from '../components';
 import homeRoute from '../features/categoryAttribute/route';
 import sampleRoute from '../features/sample/route';
 import stockLevelRoute from '../features/stockLevel/route';
-// import stockFreezeEditRoute from '../features/stockFreezeEdit/route';
 import {hasAccessAuth} from './helper.js';
 import routeMap from './routeMap.js';
 import NoAuth from '../components/NoAuthPage.js';
@@ -22,14 +20,10 @@ const config = [{
 }];
 
 function routeConfig ( store  ){
-
 	const onEnter = (nextState, replace, cb)=>{
 		const checkAuth = (aAuth)=>{
-
 			let _route = nextState.location.pathname;
-
 			 _route =  _route.indexOf('/') === 0 ? _route.slice(1): _route;
-			
 			if(!hasAccessAuth(routeMap[_route],aAuth)){
 				replace({
 					pathname:NO_AUTH_PATH
@@ -45,7 +39,6 @@ function routeConfig ( store  ){
 					checkAuth(store.getState().authContext.auth);
 				}
 			});
-		
 		}else{
 			checkAuth(state.authContext.auth);
 		}
@@ -55,8 +48,6 @@ function routeConfig ( store  ){
 		aRoutes.forEach((oRoute)=>{
 			if(oRoute.path && oRoute.path.length > 0){
 				oRoute.onEnter = onEnter;
-					console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-				console.log(oRoute.path);
 			}
 			if(oRoute.childRoutes){
 				bindEnter(oRoute.childRoutes);
