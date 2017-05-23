@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const defaultContext = '/hoenix';
+const defaultContext = '/fivestaradminstorefront';
 // Webpak Dashboard
 var Dashboard = require('webpack-dashboard');
 var DashboardPlugin = require('webpack-dashboard/plugin');
@@ -23,8 +23,11 @@ module.exports = {
     contentBase: path.join(__dirname, 'src'),
 	proxy:{
 		'!(**/_admin/**|/_tmp/**|/**/_admin/|/_tmp/*/**)':{
+		
+			//target: 'http://localhost:8088',
 			//target: 'https://localhost:9002',
 			target: 'https://localhost:8079',
+			//target:'https://172.26.132.3',
 			secure: false
 		}
 	}
