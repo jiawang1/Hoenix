@@ -1,3 +1,4 @@
+"use strict";
 const path = require('path');
 const shell = require('shelljs');
 const webpack = require('webpack');
@@ -10,9 +11,9 @@ const PORT = require('../package.json').webpackDevServerPort;
 
 function startDevServer(oDllInfo) {
 
-const srcPath = path.join(__dirname, '../src');
-const tmpPath = oDllInfo.tmpPath;
-const manifestPath = path.join(tmpPath, 'vendors-manifest.json');
+  const srcPath = path.join(__dirname, '../src');
+  const tmpPath = oDllInfo.tmpPath;
+  const manifestPath = path.join(tmpPath, 'vendors-manifest.json');
   devConfig.entry = {
     main: [
       `webpack-dev-server/client?http://localhost:${PORT}`,
@@ -22,24 +23,24 @@ const manifestPath = path.join(tmpPath, 'vendors-manifest.json');
     ],
   };
   devConfig.plugins.push(new webpack.DllReferencePlugin({    //include dll
-      context: srcPath,
-      manifest: require(manifestPath),
-	}));
+    context: srcPath,
+    manifest: require(manifestPath),
+  }));
 
-	devConfig.plugins.push(					
-		new HtmlWebpackPlugin({				  // generate HTML
-		fileName: 'index.html',
-		template:'index.ejs',
-		inject: true,
-		dllName: "/_tmp/dev/" + oDllInfo.dllFileName,
-		publicContext : defaultContext
-	 })
-	);
+  devConfig.plugins.push(
+    new HtmlWebpackPlugin({				  // generate HTML
+      fileName: 'index.html',
+      template: 'index.ejs',
+      inject: true,
+      dllName: "/_tmp/dev/" + oDllInfo.dllFileName,
+      publicContext: defaultContext
+    })
+  );
 
   new WebpackDevServer(webpack(devConfig), {
     publicPath: devConfig.output.publicPath,
     contentBase: devConfig.devServer.contentBase,
-	proxy: devConfig.devServer.proxy,
+    proxy: devConfig.devServer.proxy,
     hot: true,
     noInfo: false,
     quiet: true,
@@ -54,10 +55,10 @@ const manifestPath = path.join(tmpPath, 'vendors-manifest.json');
 }
 
 
-buildDll('dev').then(oDllInfo=>{
-	 startDevServer(oDllInfo);
-}).catch(err=>{
-	 console.error(err.message || err );
+buildDll('dev').then(oDllInfo => {
+  startDevServer(oDllInfo);
+}).catch(err => {
+  console.error(err.message || err);
 });
 
 

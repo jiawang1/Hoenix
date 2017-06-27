@@ -5,7 +5,7 @@ const Option = Select.Option;
 
 
 export const getType = obj => Object.prototype.toString.call(obj).replace(/.*\s(.*)]$/, "$1");
-export const formatDate = (ms, split="-") => {
+export const formatDate = (ms, split = "-") => {
 	//let date = new Date(Number(ms));
 	let date = null;
 	if (getType(ms) === 'Number') {
@@ -20,7 +20,7 @@ export const formatDate = (ms, split="-") => {
 	return '';
 };
 
-export const formatDateTime = (ms, split="-") => {
+export const formatDateTime = (ms, split = "-") => {
 	let date = null;
 	if (getType(ms) === 'Number') {
 		date = new Date(ms);
@@ -52,11 +52,11 @@ export const renderDropDown = (aList, key = 'code', value = 'name') => {
 };
 
 export const isNumberLike = (target) => Number.parseFloat(target) - target + 1 > 0;
-export const parseToNumber = (value)=>{
+export const parseToNumber = (value) => {
 
-	if(value !== undefined && value !== null){
-		if(value.length === 0){ return 0;}
-		else if (isNumberLike(value)){
+	if (value !== undefined && value !== null) {
+		if (value.length === 0) { return 0; }
+		else if (isNumberLike(value)) {
 			return Number(value);
 		}
 	}
@@ -168,9 +168,10 @@ export const renderScope2 = (record) => {
 	return result;
 }
 
-export const renderNumberProps = ()=>{
+export const renderNumberProps = () => {
 	return {
-		rules: [{type: 'number' ,
+		rules: [{
+			type: 'number',
 			min: 0,
 			transform: parseToNumber,
 			message: "请输入不小于0的数字"
@@ -178,9 +179,10 @@ export const renderNumberProps = ()=>{
 	};
 }
 
-export const renderNatualNumber = ()=>{
+export const renderNatualNumber = () => {
 	return {
-		rules: [{type: 'integer' ,
+		rules: [{
+			type: 'integer',
 			min: 0,
 			transform: parseToNumber,
 			message: "请输入不小于0的整数"
@@ -188,9 +190,10 @@ export const renderNatualNumber = ()=>{
 	};
 }
 
-export const renderPositiveIntegerNumber = ()=>{
+export const renderPositiveIntegerNumber = () => {
 	return {
-		rules: [{type: 'integer' ,
+		rules: [{
+			type: 'integer',
 			min: 1,
 			transform: parseToNumber,
 			message: "请输入大于0的整数"
@@ -198,51 +201,54 @@ export const renderPositiveIntegerNumber = ()=>{
 	};
 }
 
-export const renderMandatoryProps = ()=>{
+export const renderMandatoryProps = () => {
 
 	return {
-			rules: [{required: true ,
+		rules: [{
+			required: true,
 			message: "该字段为必填"
 		}]
 
 	};
 };
 
-const mergeRule = (...methods)=>()=>{
-	
-	let _rule = methods.reduce((pre, method)=>{
+const mergeRule = (...methods) => () => {
+
+	let _rule = methods.reduce((pre, method) => {
 		let oRule = method();
 		return Object.assign(pre, ...oRule.rules);
 	}, {});
 
-	return {rules: [_rule]}
+	return { rules: [_rule] }
 }
 
-export const renderMandatoryGroup = ()=>{
-		return {
-			rules: [{required: true ,
-				type:'array',
+export const renderMandatoryGroup = () => {
+	return {
+		rules: [{
+			required: true,
+			type: 'array',
 			message: "该字段为必填"
 		}]
 
 	};
 };
 
-export const parseToNumberMandatory = (value)=>{
+export const parseToNumberMandatory = (value) => {
 
-	if(isNumberLike(value)){
+	if (isNumberLike(value)) {
 		return Number(value);
 	}
 	return value;
 }
 
-export const renderMandatoryNumberProps = mergeRule(renderMandatoryProps,renderNumberProps,()=>({rules:[{transform: parseToNumberMandatory}]}) );
-export const renderMandatoryNatualNumber = mergeRule(renderMandatoryProps,renderNatualNumber,()=>({rules:[{transform: parseToNumberMandatory}]}) );
+export const renderMandatoryNumberProps = mergeRule(renderMandatoryProps, renderNumberProps, () => ({ rules: [{ transform: parseToNumberMandatory }] }));
+export const renderMandatoryNatualNumber = mergeRule(renderMandatoryProps, renderNatualNumber, () => ({ rules: [{ transform: parseToNumberMandatory }] }));
 
-export const renderMandatoryObjectProps = ()=>{
+export const renderMandatoryObjectProps = () => {
 	return {
-		rules: [{required: true ,
-			type:'object',
+		rules: [{
+			required: true,
+			type: 'object',
 			message: "该字段为必填"
 		}]
 
@@ -250,50 +256,50 @@ export const renderMandatoryObjectProps = ()=>{
 
 };
 
-export const renderNatualRatio = ()=>{
+export const renderNatualRatio = () => {
 	return {
-		rules:[{
-			type: 'integer' ,
+		rules: [{
+			type: 'integer',
 			min: 0,
-			max:100,
-			transform:parseToNumber,
+			max: 100,
+			transform: parseToNumber,
 			message: "请输入 0 ～ 100 数字"
 		}]
 	};
 };
 
 
-export const renderMandatoryNatualRatio = mergeRule(renderMandatoryProps,renderNatualRatio,()=>({rules:[{transform: parseToNumberMandatory}]}) );
+export const renderMandatoryNatualRatio = mergeRule(renderMandatoryProps, renderNatualRatio, () => ({ rules: [{ transform: parseToNumberMandatory }] }));
 
 export const goAlipay = (formDom) => {
-	let newWin=window.open("", "_blank");
+	let newWin = window.open("", "_blank");
 	newWin.document.write(`<TITLE>支付</TITLE><BODY>${formDom}</BODY></HTML>`);
 }
 
 /*  used to control date picker widget to show enabled/disabled time range */
-export	const disabledDate = (target, before=true   )=>(current)=>{
-		return current? before? current.getTime() < target : current.getTime() > target: undefined;
-	};
+export const disabledDate = (target, before = true) => (current) => {
+	return current ? before ? current.getTime() < target : current.getTime() > target : undefined;
+};
 
 
-const hasAuth = (auth)=>(config, aAuth)=>{
-		
-	return config&&config.resource && config.resource.length > 0 && aAuth.some(
-		oAuth=>{ return config.resource.indexOf(oAuth.resource) >= 0 && config.method.toLowerCase() === oAuth.method.toLowerCase() && oAuth.grant.indexOf(auth) >=0; })
+const hasAuth = (auth) => (config, aAuth) => {
+
+	return config && config.resource && config.resource.length > 0 && aAuth.some(
+		oAuth => { return config.resource.indexOf(oAuth.resource) >= 0 && config.method.toLowerCase() === oAuth.method.toLowerCase() && oAuth.grant.indexOf(auth) >= 0; })
 };
 
 export const hasAccessAuth = hasAuth("R");
 export const hasUpdateAuth = hasAuth("U");
-export const hasAuthorization = (config, aAuth)=>{
+export const hasAuthorization = (config, aAuth) => {
 	return hasAuth(config.auth)(config, aAuth);
 };
 
-export const isEmpty = (val)=>{
+export const isEmpty = (val) => {
 
 	if (val === undefined || val === null) {
 		return true;
 	}
-	if(getType(val) === 'String'){
+	if (getType(val) === 'String') {
 		return val.length === 0;
 	}
 	return false;

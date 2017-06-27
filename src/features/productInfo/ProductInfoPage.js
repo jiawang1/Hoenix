@@ -10,20 +10,20 @@ const RadioGroup = Radio.Group;
 const Panel = Collapse.Panel;
 
 const options = [{
-    value: 'zhejiang',
-    label: '浙江',
-    children: [{
-      value: 'hangzhou',
-      label: '杭州',
-    }],
-  }, {
-    value: 'jiangsu',
-    label: '江苏',
-    children: [{
-      value: 'nanjing',
-      label: '南京',
-    }],
-  }];
+  value: 'zhejiang',
+  label: '浙江',
+  children: [{
+    value: 'hangzhou',
+    label: '杭州',
+  }],
+}, {
+  value: 'jiangsu',
+  label: '江苏',
+  children: [{
+    value: 'nanjing',
+    label: '南京',
+  }],
+}];
 
 function handleChange(value) {
   console.log(`selected ${value}`);
@@ -35,109 +35,97 @@ function callback(key) {
 
 
 const columns = [
-    {
-      title: '商家',
-      dataIndex: '1',
-    },
+  {
+    title: '商家',
+    dataIndex: '1',
+  },
+  {
+    title: '编码',
+    dataIndex: '2',
+  },
+  {
+    title: '名称',
+    dataIndex: '3',
+  },
+  {
+    title: '品牌',
+    dataIndex: '4',
+  },
+  {
+    title: '商品阶段',
+    dataIndex: '5',
+  },
+  {
+    title: '所属分类',
+    dataIndex: '6',
+  },
+  {
+    title: '渠道',
+    dataIndex: '7',
+  },
+  {
+    title: '区域',
+    dataIndex: '8',
+  },
+  {
+    title: '门店',
+    dataIndex: '9',
+  },
+  {
+    title: '特殊机型',
+    dataIndex: '10',
+  },
+  {
+    title: '成本价',
+    dataIndex: '11',
+  },
+  {
+    title: '供价',
+    dataIndex: '12',
+  },
+  {
+    title: '挂牌价',
+    dataIndex: '13',
+  },
 
-    {
-      title: '编码',
-      dataIndex: '2',
-    }, 
+  {
+    title: '组货状态',
+    dataIndex: '14',
+  },
 
-    {
-      title: '名称',
-      dataIndex: '3',
-    },
+  {
+    title: '供应商编码',
+    dataIndex: '15',
+  },
 
-    {
-      title: '品牌',
-      dataIndex: '4',
-    },
+  {
+    title: '供应商名称',
+    dataIndex: '16',
+  },
 
-    {
-      title: '商品阶段',
-      dataIndex: '5',
-    } ,
+  {
+    title: '操作',
+    dataIndex: 'action',
+    render: (text, record) => {
 
-    {
-      title: '所属分类',
-      dataIndex: '6',
-    }, 
-
-    {
-      title: '渠道',
-      dataIndex: '7',
-    }, 
-
-    {
-      title: '区域',
-      dataIndex: '8',
-    }, 
-
-    {
-      title: '门店',
-      dataIndex: '9',
-    }, 
-
-    {
-      title: '特殊机型',
-      dataIndex: '10',
-    }, 
-
-    {
-      title: '成本价',
-      dataIndex: '11',
-    }, 
-
-    {
-      title: '供价',
-      dataIndex: '12',
-    }, 
-
-    {
-      title: '挂牌价',
-      dataIndex: '13',
-    }, 
-
-    {
-      title: '组货状态',
-      dataIndex: '14',
-    }, 
-
-    {
-      title: '供应商编码',
-      dataIndex: '15',
-    }, 
-
-    {
-      title: '供应商名称',
-      dataIndex: '16',
-    }, 
-
-    {
-      title: '操作',
-      dataIndex: 'action',
-      render:(text, record)=>{
-
-        function confirm(){
-          message.success(`确认删除 ${record.attrbuteCode}`); 
-        }
-
-        function cancel(){
-          message.error(`取消了删除 ${record.attrbuteCode}`);        
-        }
-
-        return  (
-          <span>
-          <Popconfirm title={`确定要删除 吗？`} onConfirm={confirm} onCancel={cancel}>
-          <a href="#" >查看</a>
-          </Popconfirm>
-          </span>
-        );  
+      function confirm() {
+        message.success(`确认删除 ${record.attrbuteCode}`);
       }
+
+      function cancel() {
+        message.error(`取消了删除 ${record.attrbuteCode}`);
+      }
+
+      return (
+        <span>
+          <Popconfirm title={`确定要删除 吗？`} onConfirm={confirm} onCancel={cancel}>
+            <a href="#" >查看</a>
+          </Popconfirm>
+        </span>
+      );
     }
-  ];
+  }
+];
 
 export class ProductInfoPage extends Component {
   static propTypes = {
@@ -145,7 +133,7 @@ export class ProductInfoPage extends Component {
     actions: PropTypes.object.isRequired,
   };
 
-  onCascadeChange(e){
+  onCascadeChange(e) {
     console.log(e);
   }
 
@@ -229,9 +217,9 @@ export class ProductInfoPage extends Component {
               </FormItem>
             </Col>
           </Row>
-          <h6>价格</h6>    
+          <h6>价格</h6>
           <Row>
-            <Col span={6}> 
+            <Col span={6}>
               <FormItem
                 label="工业分类"
                 labelCol={{ span: 9 }}
@@ -249,7 +237,7 @@ export class ProductInfoPage extends Component {
                 label="区域"
                 labelCol={{ span: 9 }}
                 wrapperCol={{ span: 15 }}>
-                <Cascader options={options} onChange={this.onCascadeChange} placeholder=""/>
+                <Cascader options={options} onChange={this.onCascadeChange} placeholder="" />
               </FormItem>
             </Col>
             <Col span={6}>
@@ -263,19 +251,19 @@ export class ProductInfoPage extends Component {
                 </Select>
               </FormItem>
             </Col>
-            <Col span={6} className="search-price">              
+            <Col span={6} className="search-price">
               <FormItem
                 label="价格"
                 labelCol={{ span: 9 }}
                 wrapperCol={{ span: 15 }}>
                 <Input size="default" />
-              <label className="label">－</label>
-              <Input size="default" />
+                <label className="label">－</label>
+                <Input size="default" />
               </FormItem>
-          </Col>
-          </Row> 
+            </Col>
+          </Row>
           <Collapse onChange={callback} accordion>
-            <Panel header={'分类属性'} key="1">               
+            <Panel header={'分类属性'} key="1">
               <Row>
                 <Col span={6}>
                   <FormItem
@@ -303,9 +291,9 @@ export class ProductInfoPage extends Component {
                 </Col>
                 <Col span={6}>
                 </Col>
-              </Row>                
+              </Row>
             </Panel>
-          </Collapse>         
+          </Collapse>
           <Row className="m-b-m">
             <Col span={2} offset={20}>
               <Button type="primary">查询</Button>

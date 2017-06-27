@@ -53,23 +53,23 @@ const __fetch = (_method) => async (option) => {
 		}
 	}
 
-	try{
+	try {
 		let response = await fetch(ops.url, ops);
-		if(response.headers.get('__authentication__') === 'failed'){
+		if (response.headers.get('__authentication__') === 'failed') {
 			let json = await response.json();
-			if(window){
+			if (window) {
 				window.location.href = json.map.__message__.trim();
-			}else{
+			} else {
 				//TODO
 			}
-		}else if(response.headers.get('__authorization__') === 'failed'){
+		} else if (response.headers.get('__authorization__') === 'failed') {
 			if (window) {
 				window.location.href = window.location.href.replace(/^(.*\/#\/)(.*)/, "$1" + NO_AUTH_PATH);
 			}
-		}else{
+		} else {
 			return response;
 		}
-	}catch(err){
+	} catch (err) {
 		console.error(err.stack || err);
 		throw err;
 	}

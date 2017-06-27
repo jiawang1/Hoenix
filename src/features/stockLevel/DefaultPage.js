@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './actions';
-import { Row, Col, Tree, Input, Button, Form} from 'antd';
+import { Row, Col, Tree, Input, Button, Form } from 'antd';
 import classNames from 'classnames';
 const TreeNode = Tree.TreeNode;
 const FormItem = Form.Item;
@@ -14,7 +14,7 @@ export class DefaultPage extends Component {
     stockLevel: PropTypes.object.isRequired,
     actions: PropTypes.object.isRequired,
   };
- 
+
   render() {
 
     return (
@@ -39,32 +39,6 @@ export class DefaultPage extends Component {
           </Tree>
         </div>
         <div className="search-field-r">
-          <Row>       
-            <Col span={8}>
-              <FormItem
-                label="商品编码"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Input size="default" />
-              </FormItem>
-            </Col>
-            <Col span={8}>
-              <FormItem
-                label="商品编码"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Input size="default" />
-              </FormItem>
-            </Col>
-            <Col span={8}>
-              <FormItem
-                label="商品编码"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Input size="default" />
-              </FormItem>              
-            </Col>
-          </Row> 
           <Row>
             <Col span={8}>
               <FormItem
@@ -88,12 +62,38 @@ export class DefaultPage extends Component {
                 labelCol={{ span: 9 }}
                 wrapperCol={{ span: 15 }}>
                 <Input size="default" />
-              </FormItem>              
+              </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={8}>
+              <FormItem
+                label="商品编码"
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
+                <Input size="default" />
+              </FormItem>
+            </Col>
+            <Col span={8}>
+              <FormItem
+                label="商品编码"
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
+                <Input size="default" />
+              </FormItem>
+            </Col>
+            <Col span={8}>
+              <FormItem
+                label="商品编码"
+                labelCol={{ span: 9 }}
+                wrapperCol={{ span: 15 }}>
+                <Input size="default" />
+              </FormItem>
             </Col>
           </Row>
         </div>
         <div className="clr">
-        </div>                
+        </div>
       </div>
     );
   }
