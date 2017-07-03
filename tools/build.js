@@ -37,11 +37,11 @@ buildDll('dist').then(oDllInfo => {
 	const srcPath = path.join(__dirname, '../src');
 	const tmpPath = oDllInfo.tmpPath;
 	const manifestPath = path.join(tmpPath, 'vendors-manifest.json');
-
 	config.output = {
 		path: path.join(__dirname, '../build/static'),
 		filename: `[name].bundle.${timestamp}.js`,
-		publicPath: `${contextRoot}/_admin/static/`
+		publicPath: `${contextRoot}/_admin/static/`,
+		chunkFilename: '[name].[chunkhash:8].chunk.js'
 	};
 	config.plugins.push(
 		new webpack.DllReferencePlugin({    //include dll

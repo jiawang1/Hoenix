@@ -41,6 +41,7 @@ function startDevServer(oDllInfo) {
     publicPath: devConfig.output.publicPath,
     contentBase: devConfig.devServer.contentBase,
     proxy: devConfig.devServer.proxy,
+    chunkFilename: devConfig.output.chunkFilename,
     hot: true,
     noInfo: false,
     quiet: true,

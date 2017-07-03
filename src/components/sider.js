@@ -128,7 +128,7 @@ export default React.createClass({
 						  </SubMenu>
 						 );	
 					}
-				}else if (config.component){
+				}else if (config.component||config.getComponent ){
 					prev.push( <Menu.Item key={ _path }> <Link to={_path}>{config.text}</Link> </Menu.Item> );
 				}
 				else{

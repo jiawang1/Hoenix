@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const defaultContext = '/fivestaradminstorefront';
+const defaultContext = '/hoenix';
 // Webpak Dashboard
 var Dashboard = require('webpack-dashboard');
 var DashboardPlugin = require('webpack-dashboard/plugin');
@@ -17,7 +17,8 @@ module.exports = {
     path: path.join(__dirname, 'build/static'),
     filename: '[name].bundle.js',
     publicPath: `${defaultContext}/_admin/`,
-	sourceMapFilename: "[name].map"
+   	chunkFilename: '[name].[chunkhash:8].chunk.js',
+	  sourceMapFilename: "[name].map"
   },
   devServer: {
     contentBase: path.join(__dirname, 'src'),

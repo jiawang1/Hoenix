@@ -8,7 +8,6 @@ import { actions } from './contextState.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -23,15 +22,12 @@ class App extends Component {
 			iconType: 'menu-fold'
 		};
 	}
-
 	handleClick() {
-
 		if (this.state.hideMenu.length === 0) {
 			this.setState({
 				hideMenu: 'hide-menu',
 				iconType: 'menu-unfold'
 			});
-
 		} else {
 			this.setState({
 				hideMenu: '',
@@ -39,9 +35,7 @@ class App extends Component {
 			});
 		}
 	}
-
 	render() {
-
 		let heightStyle = {
 			minHeight: this.state.height + 'px'
 		};
@@ -74,7 +68,6 @@ class App extends Component {
 		getCurrentUser();
 	}
 }
-
 App.propTypes = {
 	children: PropTypes.node,
 };
@@ -84,13 +77,11 @@ const mapStateToProps = ({ authContext = { currentUser: {}, auth: [] } }) => {
 		authContext
 	};
 };
-
 const mapDispatchToProps = (dispatch) => {
 	return {
 		actions: bindActionCreators(actions, dispatch)
 	};
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 
