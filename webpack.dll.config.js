@@ -18,7 +18,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    // new webpack.optimize.OccurenceOrderPlugin(),
   ],
   module: {
     loaders: [
@@ -32,10 +32,7 @@ module.exports = {
       }, {
         test: /\.less$/,
         loader: 'style-loader!css-loader!less-loader'
-      }, {
-        test: /\.json$/,
-        loader: 'json-loader'
-      }, {
+      },  {
         test: /\.(png|jpg)$/,
         loader: 'url-loader?limit=8192'
       }

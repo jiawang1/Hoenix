@@ -20,7 +20,7 @@ module.exports = {
     new LodashModuleReplacementPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.DefinePlugin({
       ENV: '"dist"',
@@ -41,10 +41,7 @@ module.exports = {
       }, {
         test: /\.less$/,
         loader: 'style-loader!css-loader!less-loader'
-      }, {
-        test: /\.json$/,
-        loader: 'json-loader'
-      }, {
+      },  {
         test: /\.(png|jpg)$/,
         loader: 'url-loader?limit=8192'
       }

@@ -181,7 +181,7 @@ class CategoryAttributePage extends Component {
 						deleteAttribute(record.code);
 					}
 					function cancel() {
-						messageBox.success(`取消了删除 ${record.code}`);
+						messageBox.success(`取消删除 ${record.code}`);
 					}
 
 					return (
@@ -201,7 +201,6 @@ class CategoryAttributePage extends Component {
 			}
 			return typeCode;
 		}
-
 
 		var {attributePageMeta, pagedAData } = this.props.home;
 		var metaData = attributePageMeta ? attributePageMeta : {};

@@ -34,32 +34,29 @@ module.exports = {
 	}
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       ENV: '"dev"',
     }),
 	new DashboardPlugin(dashboard.setData),
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules|build/,
-        loader: 'react-hot-loader!babel-loader?cacheDirectory=true'
+        use: ['react-hot-loader','babel-loader?cacheDirectory=true']
       }, {
         test: /\.(ttf|eot|woff|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader'
+        use: 'file-loader'
       }, {
         test: /\.less$/,
-        loader: 'style-loader!css-loader!less-loader'
-      }, {
-        test: /\.json$/,
-        loader: 'json-loader'
-      }, {
+        use: ['style-loader','css-loader','less-loader']
+      },  {
         test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=8192'
+        use: 'url-loader?limit=8192'
       }
     ]
   }
