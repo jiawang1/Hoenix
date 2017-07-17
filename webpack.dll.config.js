@@ -21,20 +21,20 @@ module.exports = {
     // new webpack.optimize.OccurenceOrderPlugin(),
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'react-hot-loader!babel-loader'
+        use: ['react-hot-loader','babel-loader?cacheDirectory=true']
       }, {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader'
+        use: 'file-loader'
       }, {
         test: /\.less$/,
-        loader: 'style-loader!css-loader!less-loader'
+        use: ['style-loader','css-loader','less-loader']
       },  {
         test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=8192'
+        use: 'url-loader?limit=8192'
       }
     ]
   }

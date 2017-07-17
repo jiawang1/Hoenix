@@ -9,7 +9,7 @@ const buildDll = require('./buildDll.js').buildDll;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const defaultContext = '/fivestaradminstorefront';
 const logger = (...text) => { console.log('\x1b[36m', ...text, '\x1b[0m'); };
-config.warnings = true;
+//config.warnings = true;
 
 var params = process.argv.slice(2),
 	contextRoot = defaultContext;
@@ -61,6 +61,8 @@ buildDll('dist').then(oDllInfo => {
 
 
 	const start = new Date().getTime();
+	logger(`start to build main resources at ${start}`);
+	console.log(config);
 	webpack(config, (err) => {
 		if (err) console.error(err);
 		else {

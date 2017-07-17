@@ -20,7 +20,6 @@ module.exports = {
     new LodashModuleReplacementPlugin(),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
-    // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.DefinePlugin({
       ENV: '"dist"',
@@ -30,20 +29,20 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: 'babel-loader'
       }, {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader'
+        use: 'file-loader'
       }, {
         test: /\.less$/,
-        loader: 'style-loader!css-loader!less-loader'
+        use: ['style-loader','css-loader','less-loader']
       },  {
         test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=8192'
+        use: 'url-loader?limit=8192'
       }
     ]
   }
