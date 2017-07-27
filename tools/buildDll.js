@@ -47,6 +47,7 @@ module.exports = {
 						ENV: `"${env}"`
 				   };	
 				   if(env === 'dist'){
+					   dllConfig.plugins.push(new webpack.optimize.ModuleConcatenationPlugin()); 
 					   dllConfig.plugins.push(new webpack.optimize.DedupePlugin());
 					   dllConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
 					   dllConfig.plugins.push(new webpack.optimize.AggressiveMergingPlugin());
@@ -61,11 +62,11 @@ module.exports = {
 					   context: srcPath,
 				   }));
 
-				   webpack(dllConfig, (err) => {
-					   if (err) {
+				   webpack(dllConfig, (err, stats) => {
+					   if (err|| stats.hasErrors()) {
 						   console.log('dll build failed:');
-						   console.log(err.stack || err);
-						   reject(err);
+						   console.log(err.stack || err||stats.hasErrors() );
+						   reject(err|| stats.hasErrors());
 					   }
 					   console.log('dll build success.');
 					   resolve({
