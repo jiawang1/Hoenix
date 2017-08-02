@@ -2,7 +2,6 @@ import App from '../containers/App';
 import { Page404 } from '../components';
 import homeRoute from '../features/categoryAttribute/route';
 import sampleRoute from '../features/sample/route';
-import stockLevelRoute from '../features/stockLevel/route';
 import { hasAccessAuth } from './helper.js';
 import routeMap from './routeMap.js';
 import NoAuth from '../components/NoAuthPage.js';

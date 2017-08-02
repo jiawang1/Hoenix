@@ -3,8 +3,6 @@ import { routerReducer } from 'react-router-redux';
 import categoryReducer from '../features/categoryAttribute/categoryAttributeState.js';
 import sampleReducer from '../features/sample/reducer';
 import productInfoReducer from '../features/productInfo/productinfoState';
-import stockLevelReducer from '../features/stockLevel/reducer';
-import stockFreezeReducer from '../features/stockFreeze/reducer';
 import authContext from '../containers/contextState.js';
 import componentCommonReducer from './../components/reducer';
 
@@ -21,9 +19,7 @@ const rootReducer = combineReducers({
   routing: routerReducer,
   home: categoryReducer,
   sample: sampleReducer,
-  stockLevel: stockLevelReducer,
   authContext,
-  stockFreeze: stockFreezeReducer,
   components:componentCommonReducer,
 });
 

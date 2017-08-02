@@ -3,7 +3,7 @@ import {message, Icon,notification  } from "antd";
 import Notification from 'rc-notification';
 import assign from 'object-assign';
 import { connect } from 'react-redux';
-import {removeError} from './actions';
+import {REMOVE_GLOBAL_ERROR} from '../common/commonErrorState.js';
 
 var messageBox = {};
 
@@ -20,6 +20,15 @@ messageBox.success = (text)=>{
 messageBox.error = (config)=>{
 	var _config = Object.assign({message: '错误'},config, {duration: null});
 	notification.error(_config);
+};
+
+
+
+ const removeError = key => {
+	return {
+		type: REMOVE_GLOBAL_ERROR,
+		key: key
+	};
 };
 
 class MessageBox extends Component{

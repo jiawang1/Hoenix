@@ -41,7 +41,7 @@ class ProductInfoPage extends Component {
 		const {dispatch} = this.props;
 
 		if(dispatch){
-			dispatch({type:RETRIEVE_PAGE_META});
+			dispatch({type:'productInfo/retrievePageMeta'});
 		}
 
 			//针对跳转过来的情况特殊处理

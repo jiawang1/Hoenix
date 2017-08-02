@@ -1,5 +1,5 @@
 import {getType} from './helper.js';
-import { ADD_GLOBAL_ERROR } from './constants';
+import {ApplicationError, SystemError} from './commonErrorState.js';
 
 
 var rootContext = null;
@@ -78,7 +78,7 @@ const __fetch =  (_method) => async (option) => {
 	correntURL(ops);
 	let response = await fetch(ops.url,ops);
 	if (response.status >= 400) {
-		var error = new Error(`response status : ${response.status}, Error is ${response.statusText}`);
+		var error = new SystemError(`response status : ${response.status}, Error is ${response.statusText}`);
 		error.response = response;
 		throw error;
 	}
@@ -145,7 +145,9 @@ const __generateService = (method)=>(url)=> async (option)=>{
 			var __content = getContent(json);
 			return  __content === 'String'?JSON.parse(__content):__content;
 		}else{
-			//TODO  made a global error handler
+			let error =  new ApplicationError(`${json.__content__.message}`);
+			error.status = 'error';
+			throw error;
 		}
 	} catch (error) {
 		console.error(error.stack || error);

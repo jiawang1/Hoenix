@@ -147,9 +147,6 @@ const initialState = {
 export default {
 	
 	watcher:{
-		*watchPageMeta(){
-			yield takeEvery(RETRIEVE_PAGE_META,retrievePageMeta);
-		},
 		*watchProductInfo(){
 			yield takeEvery(SEARCH_PRODUCT_INFO_SAGA,searchProductInfo );	
 		},
@@ -171,16 +168,25 @@ export default {
 		*watchPublishList(){
 			yield takeEvery(PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH_SAGA,retrieveProductDetailPublishList);
 		},
-		*watchProductStockList(){
-			try{
-					yield takeEvery(PRODUCT_STOCK_DETAIL_INFO_SAGA,getProductStockList);
 
-			}catch(err){
-				console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+
+	},
+
+	managedSaga:{
+		sagaNamespace:'productInfo',
+		*retrievePageMeta(){
+			let data = yield service.retrievePageMeta();
+			yield put({type:PRODUCT_INFO_META, data});
+		},
+		* getProductStockList(option){
+
+				let data = yield service.getProductStockList(option.data);
+				yield put({type:PRODUCT_STOCK_DETAIL_INFO,  data});
+				if(option.cb){
+					option.cb(null);
+					return ;
+				}	
 			}
-		
-		}
-
 	},
 	reducer: (state = initialState, action)=>{
 		switch (action.type) {

@@ -329,11 +329,9 @@ class ProductDetailPage extends Component {
 
 		dispatch({type:UPDATE_PRODUCT_DETAIL_PRICE_SAGA, data:{ productCodes: [code], pageSize: pagination.pageSize, currentPage: pagination.current - 1},
 				 cb: (err, data)=>{
-					 if(!err){
 						this.setState({
 							priceLoading: false,
 						});
-					 }
 				 }  });
 	}
 
@@ -344,11 +342,9 @@ class ProductDetailPage extends Component {
 		dispatch({type:PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH_SAGA, 
 				 data:{ productList: [code], pageSize: pagination.pageSize, currentPage: pagination.current - 1 },
 				cb:(err)=>{
-					 if(!err){
 						this.setState({
 							publishLoading: false,
 						});
-					 }
 				}});
 	}
 
@@ -356,13 +352,11 @@ class ProductDetailPage extends Component {
 		const {dispatch} = this.props;
 		var {code} = this.props.location.query;
 
-		dispatch({ type: PRODUCT_STOCK_DETAIL_INFO_SAGA, data:{code},
+		dispatch({ type: 'productInfo/getProductStockList', data:{code},
 				 cb:(err)=>{
-					 if(!err){
 						 this.setState({
 							 stockLoading: false,
 						 });
-					 }
 				 }});
 	}
 
