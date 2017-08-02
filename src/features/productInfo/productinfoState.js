@@ -1,7 +1,6 @@
 import * as service from './service.js';
 import {put, takeEvery,select} from 'redux-saga/effects';
 
-
 export const RETRIEVE_PAGE_META = 'productInfo/RETRIEVE_PAGE_META';
 export const PRODUCT_INFO_META = 'productInfo/PRODUCT_INFO_META';
 export const PRODUCT_INFO_QUERY_CITY = 'productInfo/PRODUCT_INFO_QUERY_CITY';
@@ -59,24 +58,21 @@ function * getProductDetail(ops){
 	let data = yield service.getProductDetail(ops.data);
 	yield put({type:UPDATE_PRODUCT_DETAIL_INFO,  data});
 		if(ops.cb){
-					ops.cb(null);
-					return ;
-				}	
+				ops.cb(null);
+				return ;
+			}	
 
 };
 
 function * retrieveProductDetailPriceList(option){
 
 	let productInfo = select(state=>state.productInfo);
-	console.log(productInfo)
 	if (productInfo && productInfo.priceData && productInfo.priceData.results) {
 		if (option.currentPage === productInfo.priceData.pagination.currentPage &&
 			option.pageSize === productInfo.priceData.pagination.pageSize &&
 			option.productCodes[0] === productInfo.priceData.results[0].code) {
 				yield put({type:UPDATE_PRODUCT_DETAIL_PRICE, data:productInfo.priceData });
-
 					console.log(productInfo.priceData)
-
 			if(option.cb){
 
 				option.cb(null, productInfo.priceData);
@@ -123,12 +119,21 @@ function * retrieveProductDetailPublishList(option){
 }
 
 function * getProductStockList(option){
-	let data = yield service.getProductDetail(option.data);
-	yield put({type:PRODUCT_STOCK_DETAIL_INFO,  data});
-	if(option.cb){
-		option.cb(null);
-		return ;
-	}	
+
+	try{
+		let data = yield service.getProductStockList(option.data);
+		yield put({type:PRODUCT_STOCK_DETAIL_INFO,  data});
+		if(option.cb){
+			option.cb(null);
+			return ;
+		}	
+
+	}catch(err){
+		if(option.cb){
+			option.cb(null);
+			return ;
+		}	
+	}
 }
 
 /**
@@ -167,8 +172,13 @@ export default {
 			yield takeEvery(PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH_SAGA,retrieveProductDetailPublishList);
 		},
 		*watchProductStockList(){
-			yield takeEvery(PRODUCT_STOCK_DETAIL_INFO_SAGA,getProductStockList);
+			try{
+					yield takeEvery(PRODUCT_STOCK_DETAIL_INFO_SAGA,getProductStockList);
 
+			}catch(err){
+				console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+			}
+		
 		}
 
 	},

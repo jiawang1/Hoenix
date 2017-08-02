@@ -267,7 +267,6 @@ class ProductDetailPage extends Component {
 	}
 
 	renderChannelPanel(channels) {
-
 		return (
 			channels.map(channel => {
 				return (
@@ -347,7 +346,7 @@ class ProductDetailPage extends Component {
 				cb:(err)=>{
 					 if(!err){
 						this.setState({
-							priceLoading: false,
+							publishLoading: false,
 						});
 					 }
 				}});
@@ -361,7 +360,7 @@ class ProductDetailPage extends Component {
 				 cb:(err)=>{
 					 if(!err){
 						 this.setState({
-							 priceLoading: false,
+							 stockLoading: false,
 						 });
 					 }
 				 }});
@@ -396,6 +395,7 @@ class ProductDetailPage extends Component {
 	}
 
 	generateStockTableData(stockData) {
+		console.log(stockData)
 		let data = [];
 		stockData.forEach((sd, i) => {
 			let productSpan = 0;

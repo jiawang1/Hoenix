@@ -3,7 +3,7 @@ import { routeConfig } from '../common/routeConfig';
 import { Menu, Icon } from 'antd';
 import Sider from './../components/sider.js';
 import Header from '../components/Header.js';
-import { Message } from "../components/messageBox";
+import  Message  from "../components/messageBox";
 import { actions } from './contextState.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

@@ -4,8 +4,6 @@ import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import sagaMap from './rootSaga';
 
-
-
 let sagaMiddle = createSagaMiddleware();
 
 const middlewares = [thunk,sagaMiddle];

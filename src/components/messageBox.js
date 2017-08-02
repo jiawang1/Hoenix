@@ -62,6 +62,6 @@ function mapStateToProps(state) {
 	};
 }
 
-export const Message = connect(mapStateToProps, null)(MessageBox);
+export default connect(mapStateToProps, null)(MessageBox);
 export {messageBox};
 
