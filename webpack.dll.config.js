@@ -14,6 +14,7 @@ module.exports = {
       'redux-logger',
       'redux-thunk',
 	  'antd',
+	  'redux-saga',
 	  'whatwg-fetch'
     ],
   },

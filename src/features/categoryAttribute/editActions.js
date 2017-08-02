@@ -6,7 +6,6 @@ import {
   UPDATE_CURRENT_CLASSIFICATION,
   UNLINK_CLASSIFICATION,
   UNLINK_ATTEIBUTE,
-  SHOW_CURRENT_CLASSIFICATION,
   CLEANUP_CLASSIFICATION,
   QUERY_CLASSIFICATION,
   REFRESH_CLASSIFICATION,
@@ -140,21 +139,6 @@ const unlinkAttributeAction = (oCurrent)=>{
 		
 	};
 };
-
-//export const unlinkAttribute = (oCurrent, )=>(dispatch)=>{
-//	
-//	return postJson({url:"/unlinkAttribute"} ,{classificationCode:oCurrent.code,AttributeCode:cCode})
-//	.then(data=>{
-//		if(data.status === "success"){
-//			dispatch(unlinkClassAction(oCurrent));	
-//		}else{
-//		
-//		}
-//	}).catch(err=>{});
-//
-//	
-//
-//};
 
 const unlinkClassAction = (oCurrent)=>{
 	return {

@@ -77,7 +77,7 @@ export const groupAttributes = (count) => (attrs) => {
 
 	var groupedAttr = [];
 
-	return attrs.reduce((pre, curr, inx) => {
+	return (attrs?attrs:[]).reduce((pre, curr, inx) => {
 		if (inx === attrs.length - 1) {
 			if (groupedAttr.length === count) {
 				pre.push(groupedAttr.slice());

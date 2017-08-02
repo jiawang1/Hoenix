@@ -92,7 +92,6 @@ const __findCategory = (path, category) => {
 			category = category[code];
 		}
 	});
-
 	return Object.keys(category).some(key => { return getType(category[key]) === 'Object' });
 
 };

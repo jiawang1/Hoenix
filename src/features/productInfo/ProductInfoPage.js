@@ -1,329 +1,217 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from './actions';
 import { ProductGrid } from './ProductGrid';
-import { Form, Select, Input, Row, Col, Button, Radio, Collapse, Cascader } from 'antd';
-const FormItem = Form.Item;
-const Option = Select.Option;
-const RadioGroup = Radio.Group;
-const Panel = Collapse.Panel;
+import  CategoryDialog  from './../../components/CategoryDialog';
+import  BrandDialog  from './../../components/BrandDialog';
+import SupplierDialog from './../../components/SupplierDialog';
+import { ProductDialog } from './../../components/ProductDialog';
+import { QueryForm } from './QueryForm';
+import { Form, Select, Input, Row, Col, Button, Radio, Collapse, Cascader,Icon } from 'antd';
+import { getType } from './../../common/helper.js';
 
-const options = [{
-  value: 'zhejiang',
-  label: '浙江',
-  children: [{
-    value: 'hangzhou',
-    label: '杭州',
-  }],
-}, {
-  value: 'jiangsu',
-  label: '江苏',
-  children: [{
-    value: 'nanjing',
-    label: '南京',
-  }],
-}];
+import {RETRIEVE_PAGE_META,SEARCH_PRODUCT_INFO_SAGA,GET_CATEGORY_ATTRIBUTE_SAGA,
+	PRODUCT_INFO_QUERY_CITY_SAGA,DYNAMIC_FORM_PREFIX	} from './productinfoState.js';
 
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
-
-function callback(key) {
-  console.log(key);
-}
+const formItemLayout = {
+		labelCol: { span: 9 },
+		wrapperCol: { span: 15 },
+	};
 
 
-const columns = [
-  {
-    title: '商家',
-    dataIndex: '1',
-  },
-  {
-    title: '编码',
-    dataIndex: '2',
-  },
-  {
-    title: '名称',
-    dataIndex: '3',
-  },
-  {
-    title: '品牌',
-    dataIndex: '4',
-  },
-  {
-    title: '商品阶段',
-    dataIndex: '5',
-  },
-  {
-    title: '所属分类',
-    dataIndex: '6',
-  },
-  {
-    title: '渠道',
-    dataIndex: '7',
-  },
-  {
-    title: '区域',
-    dataIndex: '8',
-  },
-  {
-    title: '门店',
-    dataIndex: '9',
-  },
-  {
-    title: '特殊机型',
-    dataIndex: '10',
-  },
-  {
-    title: '成本价',
-    dataIndex: '11',
-  },
-  {
-    title: '供价',
-    dataIndex: '12',
-  },
-  {
-    title: '挂牌价',
-    dataIndex: '13',
-  },
+class ProductInfoPage extends Component {
+	static propTypes = {
+		productInfo: PropTypes.object.isRequired,
+	};
+	
+	constructor(){
+		super();
+		this.state = {
+			metaData: {},
+			pagination: {
+				pageSize: 10,
+				current: 1,
+				total: 0
+			},
+			loading: false
+		}
+	}
 
-  {
-    title: '组货状态',
-    dataIndex: '14',
-  },
+	componentDidMount(){
+		const {dispatch} = this.props;
 
-  {
-    title: '供应商编码',
-    dataIndex: '15',
-  },
+		if(dispatch){
+			dispatch({type:RETRIEVE_PAGE_META});
+		}
 
-  {
-    title: '供应商名称',
-    dataIndex: '16',
-  },
+			//针对跳转过来的情况特殊处理
+			let {productCategoryCode, productCategoryName} = this.props.location.query;
+			if (productCategoryCode) {
+				this.query({categoryCodes: [productCategoryCode]} );
+				return;
+			}
+	
+			if(this.props.formInfo || (this.props.productInfo && this.props.productInfo.aData) ){
+				this.query(this.props.formInfo?this.props.formInfo.formValue:{} );
+			}
+	}
 
-  {
-    title: '操作',
-    dataIndex: 'action',
-    render: (text, record) => {
+	query(formValue){
 
-      function confirm() {
-        message.success(`确认删除 ${record.attrbuteCode}`);
-      }
+		var attributeList = [],
+				oCondition={};
+		Object.keys(formValue).forEach(key=>{
+			if(key.indexOf(DYNAMIC_FORM_PREFIX) >= 0 ){
+				attributeList.push({
+					code: key.slice(DYNAMIC_FORM_PREFIX.length),
+					value: formValue[key]
+				});
+			}else if(getType(formValue[key]) === 'Object'&&formValue[key]['key']){
+				oCondition[key] = formValue[key]['key'];
+			}else{
+				if(key === 'minPrice' || key === 'maxPrice'){
+					oCondition[key] = formValue[key]?Number(formValue[key]):formValue[key];
+				}else{
+					oCondition[key] = formValue[key];
+				}
 
-      function cancel() {
-        message.error(`取消了删除 ${record.attrbuteCode}`);
-      }
+			}
+		});
 
-      return (
-        <span>
-          <Popconfirm title={`确定要删除 吗？`} onConfirm={confirm} onCancel={cancel}>
-            <a href="#" >查看</a>
-          </Popconfirm>
-        </span>
-      );
-    }
-  }
-];
+		if (oCondition.supplierCode && oCondition.supplierCode.length == 1) {
+			oCondition.supplierCode = oCondition.supplierCode[0];
+		}
+		
+		attributeList.length>0 && (oCondition['attributeList'] = attributeList);
+		this.__query(null, oCondition).then(()=>{
+			this.setState({
+				loading: false,
+			});
+		});
+	}
 
-export class ProductInfoPage extends Component {
-  static propTypes = {
-    productInfo: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
-  };
+	__query(pagin, oCondition){
+		const {dispatch} = this.props;
+		const {pagination} = this.state;
+		const page = pagin ? pagin : pagination;
+		this.setState({
+			loading: true,
+			oCondition
+		});
 
-  onCascadeChange(e) {
-    console.log(e);
-  }
+		return new Promise((res,rej)=>{
+			dispatch({ type: SEARCH_PRODUCT_INFO_SAGA, data:{...oCondition, pageSize:page.pageSize, currentPage:page.current-1}, cb:(err,data)=>{
+				if(err){
+					rej(err);
+				}else{
+					res(data);
+				}
+			}})
+		});
+	}
+	
+	handleGridChange(pagination){
+		let {oCondition} = this.state;
+		this.__query(pagination, oCondition).then(()=>{
+			this.setState({
+				loading: false,
+				pagination: pagination
+			});
+		});
+	}
+	
+	queryCategoryAttribute(args){
+		const {dispatch} = this.props;
+		dispatch({type:GET_CATEGORY_ATTRIBUTE_SAGA, data:args });
+	}
 
-  render() {
-    return (
-      <div className="main-area product-info">
-        <Form horizontal className="ant-advanced-search-form">
-          <Row>
-            <Col span={6}>
-              <FormItem
-                label="商品编码"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Input size="default" />
-              </FormItem>
-              <FormItem
-                label="品牌"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Input size="default" />
-              </FormItem>
-              <FormItem
-                label="商品阶段"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Select size="default" onChange={handleChange}>
-                  <Option value="o1">新品</Option>
-                  <Option value="o2">成长</Option>
-                  <Option value="o3">成熟</Option>
-                  <Option value="o4">衰退</Option>
-                  <Option value="o5">淘汰</Option>
-                </Select>
-              </FormItem>
-            </Col>
-            <Col span={6}>
-              <FormItem
-                label="商品名称"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Input size="default" />
-              </FormItem>
-              <FormItem
-                label="商家"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Select showSearch size="default" optionFilterProp="children" notFoundContent="无法找到" onChange={handleChange}>
-                  <Option value="dynamic">动态获取</Option>
-                  <Option value="other">其他</Option>
-                </Select>
-              </FormItem>
-            </Col>
-            <Col span={6}>
-              <FormItem
-                label="供应商"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Input size="default" />
-              </FormItem>
-              <FormItem
-                label="型号"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Input size="default" />
-              </FormItem>
-            </Col>
-            <Col span={6}>
-              <FormItem
-                label="工业分类"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Input size="default" />
-              </FormItem>
-              <FormItem
-                label="虚拟商品"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <RadioGroup>
-                  <Radio key="a" value={1}>是</Radio>
-                  <Radio key="b" value={2}>否</Radio>
-                </RadioGroup>
-              </FormItem>
-            </Col>
-          </Row>
-          <h6>价格</h6>
-          <Row>
-            <Col span={6}>
-              <FormItem
-                label="工业分类"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Select size="default" onChange={handleChange}>
-                  <Option value="five">五星享货</Option>
-                  <Option value="offline">线下</Option>
-                  <Option value="gh">工行</Option>
-                  <Option value="jh">建行</Option>
-                </Select>
-              </FormItem>
-            </Col>
-            <Col span={6}>
-              <FormItem
-                label="区域"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Cascader options={options} onChange={this.onCascadeChange} placeholder="" />
-              </FormItem>
-            </Col>
-            <Col span={6}>
-              <FormItem
-                label="门店"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Select size="default" onChange={handleChange}>
-                  <Option value="o1">中央路店</Option>
-                  <Option value="o2">山西路店</Option>
-                </Select>
-              </FormItem>
-            </Col>
-            <Col span={6} className="search-price">
-              <FormItem
-                label="价格"
-                labelCol={{ span: 9 }}
-                wrapperCol={{ span: 15 }}>
-                <Input size="default" />
-                <label className="label">－</label>
-                <Input size="default" />
-              </FormItem>
-            </Col>
-          </Row>
-          <Collapse onChange={callback} accordion>
-            <Panel header={'分类属性'} key="1">
-              <Row>
-                <Col span={6}>
-                  <FormItem
-                    label="属性一"
-                    labelCol={{ span: 9 }}
-                    wrapperCol={{ span: 15 }}>
-                    <Input size="default" />
-                  </FormItem>
-                </Col>
-                <Col span={6}>
-                  <FormItem
-                    label="属性二"
-                    labelCol={{ span: 9 }}
-                    wrapperCol={{ span: 15 }}>
-                    <Input size="default" />
-                  </FormItem>
-                </Col>
-                <Col span={6}>
-                  <FormItem
-                    label="属性三"
-                    labelCol={{ span: 9 }}
-                    wrapperCol={{ span: 15 }}>
-                    <Input size="default" />
-                  </FormItem>
-                </Col>
-                <Col span={6}>
-                </Col>
-              </Row>
-            </Panel>
-          </Collapse>
-          <Row className="m-b-m">
-            <Col span={2} offset={20}>
-              <Button type="primary">查询</Button>
-            </Col>
-            <Col span={2}>
-              <Button type="ghost">重置</Button>
-            </Col>
-          </Row>
-        </Form>
-        <Row>
-          <ProductGrid aColumn={columns}></ProductGrid>
-        </Row>
-      </div>
-    );
-  }
+	queryCity(province){
+		const {dispatch} = this.props;
+		dispatch({type:PRODUCT_INFO_QUERY_CITY_SAGA, data: {province}});
+	}
+	
+	queryPointOfService(city){
+		const {dispatch} = this.props;
+		dispatch({type:PRODUCT_INFO_QUERY_POINTOFSERVICE_SAGA, data: {city}});
+	}
+	
+	componentWillReceiveProps(next){
+	
+		if(next.productInfo && next.productInfo.aData){
+			this.setState({
+				pagination:{
+					...this.state.pagination,
+					total: next.productInfo.aData.pagination?next.productInfo.aData.pagination.totalNumberOfResults:0
+				}
+			});
+		}
+	}
+
+	handleReset() {
+
+		this.setState({
+			pagination: {
+				...this.state.pagination,
+				current: 1,
+				total: 0
+			},
+			oCondition: null
+
+		});
+	}
+
+	render() {
+
+		var {productInfoMeta,categoryAttribute, aData, cities, pointOfServices} = this.props.productInfo;
+		var metaData = productInfoMeta ? productInfoMeta : {};
+		var aDataSource = aData ? aData.results : [];
+		cities = cities ? cities : [];
+		pointOfServices = pointOfServices ? pointOfServices : [];
+
+		// prepare for jumping to this page
+		let extraData = null;
+		let {productCategoryCode, productCategoryName} = this.props.location.query;
+		if (productCategoryCode) {
+			extraData = {productCategoryCode, productCategoryName: productCategoryName?productCategoryName: productCategoryCode}
+		}
+		
+		return (
+			<div className="main-area product-info">
+				<div className="field-c search-field-collapsed">
+					<QueryForm submitHandler={(...args)=>{this.query(...args);}} 
+						resetHandler={(...args)=>{this.handleReset(...args);}}
+						queryCategoryAttribute={(...args)=>{this.queryCategoryAttribute(...args);}} 
+						queryCity={(...args)=>{this.queryCity(...args);}} 
+						queryPointOfService={(...args)=>{this.queryPointOfService(...args);}} 
+						attribute={categoryAttribute} 
+						pageMeta={metaData} 
+						cities={cities} 
+						reducerName={'productInfo'}
+						formInfo={this.props.formInfo}
+						pointOfServices={pointOfServices}
+						extraData={extraData} />
+					<Button type="ghost" className="m-b-s">
+						<Icon type="file-excel" />导出查询结果
+					</Button>
+					<Row>
+						<ProductGrid aDataSource={aDataSource} loading={this.state.loading} 
+							onChange={(...args)=>{this.handleGridChange(...args)}} 
+							pagination={this.state.pagination} />
+					</Row>
+				</div>
+			</div>
+		);
+	}
 }
 
 function mapStateToProps(state) {
-  return {
-    productInfo: state.productInfo,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({ ...actions }, dispatch)
-  };
+	return {
+		productInfo: state.productInfo,
+		formInfo: state.components.productInfo
+	};
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+	mapStateToProps
+	
 )(ProductInfoPage);

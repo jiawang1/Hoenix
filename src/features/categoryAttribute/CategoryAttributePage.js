@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from './actions';
 import { ProductGrid } from './ProductGrid';
 import { CategoryTree } from "./../../components/CategoryTree";
 import { Row, Col, Input, Select, Cascader, Button, Table, Popconfirm, message, Radio, DatePicker, Form } from 'antd';
@@ -9,6 +8,7 @@ import { QueryForm } from './QueryForm.js';
 import { messageBox } from './../../components/messageBox';
 import { Link } from 'react-router';
 import { deleteAttribute } from './editActions';
+import {actions} from './categoryAttributeState.js';
 
 const CatTree = connect(state => ({
 	category: state.home.category
@@ -68,7 +68,7 @@ class CategoryAttributePage extends Component {
 			loading: true,
 		});
 
-		return queryAttribute()({ ...queryForm, categoryCode: code, pageSize: page.pageSize, currentPage: page.current - 1 });
+		return queryAttribute({ ...queryForm, categoryCode: code, pageSize: page.pageSize, currentPage: page.current - 1 });
 	}
 
 	componentWillReceiveProps(nextProps) {

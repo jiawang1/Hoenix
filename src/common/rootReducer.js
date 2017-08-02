@@ -1,20 +1,30 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import homeReducer from '../features/categoryAttribute/reducer';
+import categoryReducer from '../features/categoryAttribute/categoryAttributeState.js';
 import sampleReducer from '../features/sample/reducer';
-import productInfoReducer from '../features/productInfo/reducer';
+import productInfoReducer from '../features/productInfo/productinfoState';
 import stockLevelReducer from '../features/stockLevel/reducer';
 import stockFreezeReducer from '../features/stockFreeze/reducer';
 import authContext from '../containers/contextState.js';
+import componentCommonReducer from './../components/reducer';
+
+import rootState from './rootState';
+
+
+const reducerMap = Object.keys(rootState).filter(key=> typeof rootState[key].reducer === 'function').reduce((pre, cur)=>{
+	pre[cur] = rootState[cur].reducer;
+	return pre;
+}, {});
 
 const rootReducer = combineReducers({
+  ...reducerMap,
   routing: routerReducer,
-  home: homeReducer,
+  home: categoryReducer,
   sample: sampleReducer,
-  productInfo: productInfoReducer,
   stockLevel: stockLevelReducer,
   authContext,
   stockFreeze: stockFreezeReducer,
+  components:componentCommonReducer,
 });
 
 export default rootReducer;

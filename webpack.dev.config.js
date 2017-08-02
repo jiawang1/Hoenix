@@ -1,13 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
-const defaultContext = '/hoenix';
+const defaultContext = '/fivestaradminstorefront';
 // Webpak Dashboard
 var Dashboard = require('webpack-dashboard');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 var dashboard = new Dashboard();
 
 module.exports = {
-  devtool: 'cheap-eval-source-map',
+  devtool: 'eval-source-map',
   cache: true,
   context: path.join(__dirname, 'src'),
   entry: {

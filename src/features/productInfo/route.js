@@ -5,6 +5,6 @@ import {
 export default {
   path: 'productInfo',
   component: ProductInfoPage,
-  text:'产品信息查询',
+  text:'商品信息查询',
 
 };

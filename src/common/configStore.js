@@ -1,8 +1,14 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './rootReducer';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import sagaMap from './rootSaga';
 
-const middlewares = [thunk];
+
+
+let sagaMiddle = createSagaMiddleware();
+
+const middlewares = [thunk,sagaMiddle];
 
 if (process.env.NODE_ENV !== 'production') {
   const createLogger = require('redux-logger');
@@ -24,6 +30,6 @@ export default function configureStore(initialState) {
   //     store.replaceReducer(nextReducer);
   //   });
   // }
-
+  sagaMap.map(saga=>sagaMiddle.run(saga));
   return store;
 }
