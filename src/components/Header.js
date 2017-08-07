@@ -3,7 +3,7 @@ import {Row, Col, Badge, Icon, Button, Form, Tooltip} from 'antd';
 
 export default function Header ({clickHandler,userName, iconType}){
 
-		const text = <span>登出系统</span>;
+		const text = <span>logout</span>;
 		return (
 			<div className="test">
 					<div className="logo-image-container">
@@ -17,7 +17,7 @@ export default function Header ({clickHandler,userName, iconType}){
 					</div>
 					<div className="user-info-container">
 						<span className="user">
-							欢迎 { userName || ''}
+							Welcome { userName || ''}
 						</span>
 					</div>
 			</div>

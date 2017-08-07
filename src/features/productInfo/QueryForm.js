@@ -101,26 +101,6 @@ class QueryForm extends Component {
     this.props.queryPointOfService(city);
   }
 
-  componentWillReceiveProps(nextProps) {
-
-    // const {attribute} = nextProps;
-
-    // var formInfo = nextProps.formInfo,
-    //     formMeta = formInfo?formInfo.formMeta:null,
-    //     categoryList = formMeta?formMeta.categoryCodes:null,
-    //     supplierList = formMeta?formMeta.supplierCode:null,
-    //     brandList = formMeta?formMeta.brandCodes:null,
-    //     categoryAttribute = attribute || (formMeta?formMeta.attributes:null);
-
-    // console.log("formMeta==>", formMeta);
-    // this.setState({
-    //   categoryAttribute: categoryAttribute,
-    //   selSupplier: supplierList?supplierList:this.state.selSupplier,
-    //   selCategory: categoryList?categoryList:this.state.selCategory,
-    //   selBrand: brandList?brandList:this.state.selBrand
-    // });
-  }
-
   render() {
 
     const { getFieldProps, getFieldValue } = this.props.form;

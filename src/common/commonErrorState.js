@@ -7,7 +7,7 @@ export class ApplicationError extends Error{
 
 	constructor(){
 		super(...arguments);
-		this.name = 'ApplicationError';
+		this.name = ApplicationError.prototype.constructor.name;
 	}
 
 }
@@ -15,7 +15,7 @@ export class ApplicationError extends Error{
 export class SystemError extends Error{
 	constructor(){
 		super(...arguments);
-		this.name = 'SystemError';
+		this.name =  SystemError.prototype.constructor.name;
 
 	}
 
