@@ -6,7 +6,7 @@ const buildDll = require('./buildDll.js').buildDll;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackDevServer = require('webpack-dev-server');
 const devConfig = require('../webpack.dev.config');
-const defaultContext = '/fivestaradminstorefront';
+const defaultContext = '/hoenix';
 const PORT = require('../package.json').webpackDevServerPort;
 
 function startDevServer(oDllInfo) {

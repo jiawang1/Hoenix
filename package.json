@@ -1,27 +1,16 @@
 {
   "name": "Hoenix",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "My awesome project.",
   "scripts": {
     "start": "node ./tools/server.js",
     "build": "node ./tools/build.js",
-    "test": "./node_modules/.bin/_mocha --recursive",
-    "build:test": "node ./tools/build_test_server.js",
-    "add:feature": "node ./tools/add_feature.js",
-    "add:action": "node ./tools/add_action.js",
-    "add:async-action": "node ./tools/add_async_action.js",
-    "add:page": "node ./tools/add_page.js",
-    "add:component": "node ./tools/add_component.js",
-    "rm:feature": "node ./tools/rm_feature.js",
-    "rm:action": "node ./tools/rm_action.js",
-    "rm:async-action": "node ./tools/rm_async_action.js",
-    "rm:page": "node ./tools/rm_page.js",
-    "rm:component": "node ./tools/rm_component.js"
+    "test": "./node_modules/.bin/_mocha --recursive"
   },
-  "webpackDevServerPort": 6076,
-  "buildTestServerPort": 6077,
+  "webpackDevServerPort": 8012,
+  "buildTestServerPort": 8013,
   "dependencies": {
-    "antd": "^1.11.0",
+    "antd": "^2.12.5",
     "lodash": "^4.15.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

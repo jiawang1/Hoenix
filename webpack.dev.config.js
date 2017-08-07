@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const defaultContext = '/fivestaradminstorefront';
+const defaultContext = '/hoenix';
 // Webpak Dashboard
 var Dashboard = require('webpack-dashboard');
 var DashboardPlugin = require('webpack-dashboard/plugin');
