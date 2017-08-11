@@ -15,7 +15,7 @@ You can get source code from git or just down load code. Then run
 ````
  npm start
 ````
-then open url http://localhost:6076/hoenix/_admin
+then open url http://localhost:8012/hoenix/_admin
 
 ### Features
 

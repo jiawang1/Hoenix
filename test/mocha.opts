@@ -1,4 +1,4 @@
 --require tools/domSetup.js
 --compilers js:babel-register,css:tools/nullCompiler
-./test/components/testHeader.js
+
 

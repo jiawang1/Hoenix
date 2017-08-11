@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./tools/server.js",
     "build": "node ./tools/build.js",
-    "test": "./node_modules/.bin/_mocha --recursive"
+    "test": "find ./tests -name '*.test.js' | xargs ./node_modules/.bin/_mocha --recursive"
   },
   "webpackDevServerPort": 8012,
   "buildTestServerPort": 8013,

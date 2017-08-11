@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { ProductGrid } from './ProductGrid';
 import { CategoryTree } from "./../../components/CategoryTree";
-import { Row, Col, Input, Select, Cascader, Button, Table, Popconfirm, message, Radio, DatePicker, Form } from 'antd';
+import { Row, Col, Input, Cascader, Button, Table, Popconfirm, message, Radio, DatePicker, Form } from 'antd';
 import { QueryForm } from './QueryForm.js';
 import { messageBox } from './../../components/messageBox';
 import { Link } from 'react-router';
@@ -209,7 +209,7 @@ class CategoryAttributePage extends Component {
 			<div className="main-area category-attr">
 				<div className="field-c">
 					<div className="field-l-tree">
-						{ this.renderCategoryTree() }
+						{/* { this.renderCategoryTree() } */}
 					</div>
 					<div className="field-r-tree">
 						<QueryForm query={(...args) => { this.query(...args); }} pageMeta={metaData} />
