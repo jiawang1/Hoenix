@@ -1,7 +1,19 @@
 import jsdom from 'jsdom';
 
+const { JSDOM } = jsdom;
+
 if (typeof document === 'undefined') {
-  global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
-  global.window = document.defaultView;
-  global.navigator = global.window.navigator;
+  var _dom = new JSDOM('<!doctype html><html><body>	<meta id="context-root" value="" /> </body></html>');
+  global.window = _dom.window;
+  global.document = window.document;
+  global.navigator = window.navigator;
+
+  // for react-slick media query issue
+  window.matchMedia = window.matchMedia || function () {
+    return {
+      matches: false,
+      addListener: function () { },
+      removeListener: function () { }
+    };
+  };
 }

@@ -356,14 +356,13 @@ class QueryForm extends Component {
             <Col span={5}>
             </Col>
           </Row>
-          <Collapse  accordion>
+          {/* <Collapse  accordion>
             <Panel header={'分类属性'} key="1">
               <Row className="m-r-l">
                 {collapseDropDown(this.state.categoryAttribute, getFieldProps)}
-
               </Row>
             </Panel>
-          </Collapse>
+          </Collapse> */}
           <Row>
             <Col span={12} offset={12} className="p-r-l multi-buttons">
               <Button type="primary" onClick={() => this.handleSubmit()}>查询</Button>

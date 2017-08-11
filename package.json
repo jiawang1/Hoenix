@@ -5,12 +5,12 @@
   "scripts": {
     "start": "node ./tools/server.js",
     "build": "node ./tools/build.js",
-    "test": "./node_modules/.bin/_mocha --recursive"
+    "test": "find ./tests -name '*.test.js' | xargs ./node_modules/.bin/_mocha --recursive"
   },
-  "webpackDevServerPort": 6076,
-  "buildTestServerPort": 6077,
+  "webpackDevServerPort": 8012,
+  "buildTestServerPort": 8013,
   "dependencies": {
-    "antd": "^1.11.0",
+    "antd": "^2.12.5",
     "lodash": "^4.15.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
