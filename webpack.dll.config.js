@@ -1,5 +1,4 @@
-const webpack = require('webpack');
-
+"use strict";
 module.exports = {
   entry: {
     vendors: [
@@ -13,9 +12,9 @@ module.exports = {
       'redux',
       'redux-logger',
       'redux-thunk',
-	  'antd',
-	  'redux-saga',
-	  'whatwg-fetch'
+      'antd',
+      'redux-saga',
+      'whatwg-fetch'
     ],
   },
   plugins: [
@@ -26,14 +25,14 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: ['react-hot-loader','babel-loader?cacheDirectory=true']
+        use: ['react-hot-loader', 'babel-loader?cacheDirectory=true']
       }, {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: 'file-loader'
       }, {
         test: /\.less$/,
-        use: ['style-loader','css-loader','less-loader']
-      },  {
+        use: ['style-loader', 'css-loader', 'less-loader']
+      }, {
         test: /\.(png|jpg)$/,
         use: 'url-loader?limit=8192'
       }

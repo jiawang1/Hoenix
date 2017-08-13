@@ -1,6 +1,5 @@
 "use strict";
 const path = require('path');
-const shell = require('shelljs');
 const webpack = require('webpack');
 const buildDll = require('./buildDll.js').buildDll;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -41,7 +40,7 @@ function startDevServer(oDllInfo) {
     publicPath: devConfig.output.publicPath,
     contentBase: devConfig.devServer.contentBase,
     proxy: devConfig.devServer.proxy,
-   // chunkFilename: devConfig.output.chunkFilename,
+    // chunkFilename: devConfig.output.chunkFilename,
     hot: true,
     noInfo: false,
     quiet: true,
