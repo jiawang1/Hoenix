@@ -8,7 +8,6 @@
     "test": "find ./tests -name '*.test.js' | xargs ./node_modules/.bin/_mocha --recursive"
   },
   "webpackDevServerPort": 8012,
-  "buildTestServerPort": 8013,
   "dependencies": {
     "antd": "^2.12.5",
     "lodash": "^4.15.0",

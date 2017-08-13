@@ -4,7 +4,9 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 module.exports = {
   devtool: false,
+  /*eslint-disable*/ 
   context: path.join(__dirname, 'src'),
+  /*eslint-enable*/
   entry: {
     main: [
       './styles/index.less',
@@ -12,9 +14,9 @@ module.exports = {
     ],
   },
   output: {
-	  //    path: path.join(__dirname, 'build/static'),
-	  //    filename: '[name].bundle.js',
-	  //	publicPath: '/fivestaradminstorefront/_admin/static/'
+  //    path: path.join(__dirname, 'build/static'),
+  //    filename: '[name].bundle.js',
+  //	publicPath: '/fivestaradminstorefront/_admin/static/'
   },
   plugins: [
     new LodashModuleReplacementPlugin(),
