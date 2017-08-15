@@ -1,9 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const defaultContext = '/fivestaradminstorefront';
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+
 // Webpak Dashboard
 var Dashboard = require('webpack-dashboard');
-var DashboardPlugin = require('webpack-dashboard/plugin');
 var dashboard = new Dashboard();
 
 module.exports = {
@@ -39,6 +41,7 @@ module.exports = {
     // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+	new ExtractTextPlugin({filename: 'styles.css'}),
     new webpack.DefinePlugin({
       ENV: '"dev"',
     }),
@@ -54,8 +57,8 @@ module.exports = {
         test: /\.(ttf|eot|woff|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: 'file-loader'
       }, {
-        test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+		  test: /\.less$/,
+		use: ExtractTextPlugin.extract({fallback:'style-loader', use: ['css-loader', 'less-loader']})
       }, {
         test: /\.(png|jpg)$/,
         use: 'url-loader?limit=8192'
