@@ -1,6 +1,6 @@
 import { getType } from './helper.js';
 import { ApplicationError, SystemError } from './commonErrorState.js';
-
+import 'isomorphic-fetch';
 
 var rootContext = null;
 

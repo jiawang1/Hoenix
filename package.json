@@ -22,7 +22,7 @@
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.3",
     "style-loader": "^0.13.1",
-    "whatwg-fetch": "^1.0.0"
+	"isomorphic-fetch": "^2.2.1",
   },
   "devDependencies": {
     "babel-core": "^6.14.0",

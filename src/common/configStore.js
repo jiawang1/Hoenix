@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState, compose(
     applyMiddleware(...middlewares),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    (typeof window !== 'undefined'&&window.devToolsExtension) ? window.devToolsExtension() : f => f
   ));
 
   // TODO:
