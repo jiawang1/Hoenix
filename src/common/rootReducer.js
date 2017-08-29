@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import categoryReducer from '../features/categoryAttribute/categoryAttributeState.js';
 import sampleReducer from '../features/sample/reducer';
-import productInfoReducer from '../features/productInfo/productinfoState';
 import authContext from '../containers/contextState.js';
 import componentCommonReducer from './../components/reducer';
 

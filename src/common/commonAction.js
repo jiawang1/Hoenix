@@ -1,4 +1,4 @@
-import 'whatwg-fetch';
+import 'isomorphic-fetch';
 import { getType } from './helper.js';
 import { ADD_GLOBAL_ERROR, REMOVE_GLOBAL_ERROR } from './constants';
 import { browserHistory } from 'react-router';

@@ -271,10 +271,6 @@ export const renderNatualRatio = () => {
 
 export const renderMandatoryNatualRatio = mergeRule(renderMandatoryProps, renderNatualRatio, () => ({ rules: [{ transform: parseToNumberMandatory }] }));
 
-export const goAlipay = (formDom) => {
-	let newWin = window.open("", "_blank");
-	newWin.document.write(`<TITLE>支付</TITLE><BODY>${formDom}</BODY></HTML>`);
-}
 
 /*  used to control date picker widget to show enabled/disabled time range */
 export const disabledDate = (target, before = true) => (current) => {

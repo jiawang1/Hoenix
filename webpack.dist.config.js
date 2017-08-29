@@ -1,12 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 module.exports = {
   devtool: false,
-  /*eslint-disable*/ 
-  context: path.join(__dirname, 'src'),
-  /*eslint-enable*/
+  context: path.join(__dirname, 'src'),// eslint-disable-line
   entry: {
     main: [
       './styles/index.less',
@@ -20,7 +19,8 @@ module.exports = {
   },
   plugins: [
     new LodashModuleReplacementPlugin(),
-    new webpack.optimize.DedupePlugin(),
+	new webpack.optimize.DedupePlugin(),
+	new ExtractTextPlugin({filename: 'styles.css'}),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.DefinePlugin({
@@ -41,7 +41,7 @@ module.exports = {
         use: 'file-loader'
       }, {
         test: /\.less$/,
-        use: ['style-loader','css-loader','less-loader']
+        use: ExtractTextPlugin.extract({fallback:'style-loader', use: ['css-loader', 'less-loader']})
       },  {
         test: /\.(png|jpg)$/,
         use: 'url-loader?limit=8192'

@@ -6,7 +6,7 @@ import sagaMap from './rootSaga';
 
 let sagaMiddle = createSagaMiddleware();
 
-const middlewares = [thunk,sagaMiddle];
+const middlewares = [thunk, sagaMiddle];
 
 if (process.env.NODE_ENV !== 'production') {
   const createLogger = require('redux-logger');
@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 export default function configureStore(initialState) {
   const store = createStore(rootReducer, initialState, compose(
     applyMiddleware(...middlewares),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    (typeof window !== 'undefined'&&window.devToolsExtension) ? window.devToolsExtension() : f => f
   ));
 
   // TODO:
@@ -28,6 +28,6 @@ export default function configureStore(initialState) {
   //     store.replaceReducer(nextReducer);
   //   });
   // }
-  sagaMap.map(saga=>sagaMiddle.run(saga));
+  sagaMap.map(saga => sagaMiddle.run(saga));
   return store;
 }
