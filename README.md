@@ -7,12 +7,12 @@ UX boilerplate for Admin page base on React, Redux and Ant Design widget.
 ### Quick Start
 You can get source code from git or just down load code. Then run
 
-````
+````shell
  npm install
 ````
  after install the dependency, run 
 
-````
+````shell
  npm start
 ````
 then open url http://localhost:8012/hoenix/_admin/

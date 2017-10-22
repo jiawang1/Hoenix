@@ -31,7 +31,7 @@ module.exports = {
 
         //target: 'http://localhost:8088',
         //target: 'https://localhost:9002',
-        target: 'https://localhost:8079',
+        target: 'http://localhost:8079',
         //target:'https://172.26.132.3',
         secure: false
       }

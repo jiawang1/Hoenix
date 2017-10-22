@@ -10,20 +10,18 @@ module.exports = {
 
 	buildDll(env){
 
-		const dllConfig = require('../webpack.dll.config.js');
+        const dllConfig = require('../webpack.dll.config.js');
 		const nameVersions = dllConfig.entry.vendors.map(pkgName => {
 			const pkgJson = require(path.join(pkgName.split('/')[0], 'package.json'));
 			return `${pkgJson.name}_${pkgJson.version}`;
 		}).join('-');
-
 		const dllHash = require('crypto')
 		.createHash('md5')
 		.update(nameVersions)
 		.digest('hex');
 		const dllName = `vendors_${dllHash}`;
-		const dllFileName = `${dllName}.dll.js`
+		const dllFileName = `${dllName}.dll.js`;
 		console.log('dll name: ', dllName);
-
 
 		const srcPath = path.join(__dirname, '../src');
 		const tmpPath = env === 'dist'?path.join(srcPath, './_tmp/dist'):path.join(srcPath, './_tmp/dev');
