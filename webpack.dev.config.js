@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const defaultContext = '/hoenix';
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
@@ -9,7 +10,7 @@ var Dashboard = require('webpack-dashboard');
 var dashboard = new Dashboard();
 
 module.exports = {
-    devtool: 'eval-source-map',
+    devtool: 'inline-source-map',
     cache: true,
     /*eslint-disable*/ 
     context: path.join(__dirname, 'src'),
@@ -58,7 +59,15 @@ module.exports = {
                 use: 'file-loader'
             }, {
                 test: /\.less$/,
-                use: ExtractTextPlugin.extract({fallback:'style-loader', use: ['css-loader', 'less-loader']})
+                use: ExtractTextPlugin.extract({fallback:'style-loader', 
+                    use: [{loader:'css-loader', options:{ sourceMap: true }},
+                        {loader:'postcss-loader', options:{ 
+                            ident: 'postcss',
+                            sourceMap: true,
+                            plugins: loader=>[require('autoprefixer')()]
+                        }},
+                          {loader:'less-loader', options:{ sourceMap: true }}]
+                        })
             }, {
                 test: /\.(png|jpg)$/,
                 use: 'url-loader?limit=8192'
