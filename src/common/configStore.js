@@ -9,8 +9,8 @@ let sagaMiddle = createSagaMiddleware();
 const middlewares = [thunk, sagaMiddle];
 
 if (process.env.NODE_ENV !== 'production') {
-  const createLogger = require('redux-logger');
-  const logger = createLogger({ collapsed: true });
+  const logger = require('redux-logger').default;
+    //const logger = createLogger({ collapsed: true });
   middlewares.push(logger);
 }
 
