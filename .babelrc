@@ -1,8 +1,13 @@
 {
-  "presets": ["es2015",
-      "react",
-      "babel-preset-stage-0"
-      ],
-  "plugins": [["transform-runtime",{"polyfill": false,
-      "regenerator": true}]]
+    "presets": [[
+        "env",{
+            "browsers": ["last 2 versions", "ie >= 10"],
+            "modules": false
+        }
+    ],
+    "react",
+    "babel-preset-stage-0"
+    ],
+    "plugins": [["transform-runtime",{"polyfill": false,
+        "regenerator": true}]]
 }
