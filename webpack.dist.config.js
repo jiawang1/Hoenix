@@ -40,7 +40,12 @@ module.exports = {
                 use: 'file-loader'
             }, {
                 test: /\.less$/,
-                use: ExtractTextPlugin.extract({fallback:'style-loader', use: ['css-loader', 'less-loader']})
+                use: ExtractTextPlugin.extract({fallback:'style-loader', use: ['css-loader', {
+                    loader: 'postcss-loader', options:{
+                        ident: 'postcss',
+                        plugins: loader=>[require('autoprefixer')()]
+                    }
+                } , 'less-loader']})
             },  {
                 test: /\.(png|jpg)$/,
                 use: 'url-loader?limit=8192'
