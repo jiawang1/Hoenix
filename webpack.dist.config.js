@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 
 module.exports = {
   devtool: false,
@@ -18,7 +17,6 @@ module.exports = {
   //	publicPath: '/fivestaradminstorefront/_admin/static/'
   },
   plugins: [
-    new LodashModuleReplacementPlugin(),
 	new webpack.optimize.DedupePlugin(),
 	new ExtractTextPlugin({filename: 'styles.css'}),
     new webpack.optimize.UglifyJsPlugin(),

@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const _ = require('lodash');
+//const _ = require('lodash');
 const shell = require('shelljs');
 const babel = require('babel-core');
 
@@ -22,7 +22,8 @@ module.exports = {
   },
 
   removeLines(lines, str) {
-    _.remove(lines, line => line.includes(str));
+      //_.remove(lines, line => line.includes(str));
+      lines = lines.filter(line => !line.includes(str));
   },
 
   removeAstBlockNode(lines, node) {
@@ -40,7 +41,8 @@ module.exports = {
   removeExportFunction(lines, funcName) {
     const code = lines.join('\n');
     const ast = babel.transform(code, babelOptions).ast.program;
-    const funcElement = _.find(ast.body, { type: 'FunctionDeclaration', id: { name: funcName } });
+      const funcElement = Array.from(ast.body).find(_body=>{   return (_body.type === 'FunctionDeclaration'&& _body.id.name === funcName)});
+      //  _.find(ast.body, { type: 'FunctionDeclaration', id: { name: funcName } });
     if (funcElement) {
       this.removeAstBlockNode(lines, funcElement);
     }
@@ -57,30 +59,35 @@ module.exports = {
     }
   },
 
-  lineIndex(lines, str, fromIndex) {
-    if (typeof str === 'string') {
-      return _.findIndex(lines, l => l.indexOf(str) >= 0, fromIndex || 0);
-    }
-    return _.findIndex(lines, l => str.test(l), fromIndex || 0);
+    lineIndex(lines, str, fromIndex = 0) {
+
+            //return _.findIndex(lines, l => l.indexOf(str) >= 0, fromIndex || 0);
+        let __index =lines.slice(fromIndex).findIndex(l => {   
+            if(typeof str === 'string'){
+                return l.indexOf(str) >= 0;
+            }else{
+                return str.test(l);
+            }});
+        return __index >= 0 : fromIndex + __index : fromIndex ;
   },
 
-  lastLineIndex(lines, str) {
-    if (typeof str === 'string') {
-      return _.findLastIndex(lines, l => l.indexOf(str) >= 0);
-    }
-    return _.findLastIndex(lines, l => str.test(l));
-  },
+  // lastLineIndex(lines, str) {
+  //   if (typeof str === 'string') {
+  //     return _.findLastIndex(lines, l => l.indexOf(str) >= 0);
+  //   }
+  //   return _.findLastIndex(lines, l => str.test(l));
+  // },
 
-  processTemplate(tpl, data) {
-    const compiled = _.template(tpl);
-    return compiled(data);
-  },
+  // processTemplate(tpl, data) {
+  //   const compiled = _.template(tpl);
+  //   return compiled(data);
+  // },
 
   getToSave(filesToSave) {
     return function toSave(filePath, fileContent) {
       filesToSave.push({
         path: filePath,
-        content: _.isArray(fileContent) ? fileContent.join('\n') : fileContent,
+        content: Array.isArray(fileContent) ? fileContent.join('\n') : fileContent,
       });
     };
   },

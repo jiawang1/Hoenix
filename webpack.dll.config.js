@@ -3,7 +3,6 @@ module.exports = {
     entry: {
         vendors: [
             'webpack-dev-server/client',
-            'lodash',
             'react',
             'react-dom',
             'react-router',

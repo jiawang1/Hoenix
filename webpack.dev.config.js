@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const defaultContext = '/fivestaradminstorefront';
+const defaultContext = '/hoenix';
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
