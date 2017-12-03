@@ -2,7 +2,7 @@
     "presets": [[
         "env",{
             "browsers": ["last 2 versions", "ie >= 10"],
-            "modules": false
+            "modules": "commonjs"
         }
     ],
     "react",

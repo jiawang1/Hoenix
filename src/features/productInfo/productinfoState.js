@@ -1,5 +1,5 @@
 import * as service from './service.js';
-import {put, takeEvery,select} from 'redux-saga/effects';
+import { put, takeEvery, select } from 'redux-saga/effects';
 
 export const RETRIEVE_PAGE_META = 'productInfo/RETRIEVE_PAGE_META';
 export const PRODUCT_INFO_META = 'productInfo/PRODUCT_INFO_META';
@@ -16,123 +16,123 @@ export const SEARCH_PRODUCT_INFO_SAGA = 'productInfo/SEARCH_PRODUCT_INFO_SAGA';
 export const PRODUCT_INFO_TEST_ACTION = 'productInfo/PRODUCT_INFO_TEST_ACTION';
 export const UPDATE_PRODUCT_DETAIL_INFO = 'productInfo/UPDATE_PRODUCT_DETAIL_INFO';
 export const UPDATE_PRODUCT_DETAIL_INFO_SAGA = 'productInfo/UPDATE_PRODUCT_DETAIL_INFO_SAGA';
-export const UPDATE_PRODUCT_DETAIL_PRICE= 'productInfo/UPDATE_PRODUCT_DETAIL_PRICE';
-export const UPDATE_PRODUCT_DETAIL_PRICE_SAGA= 'productInfo/UPDATE_PRODUCT_DETAIL_PRICE_SAGA';
-export const DYNAMIC_FORM_PREFIX= '-data-';
+export const UPDATE_PRODUCT_DETAIL_PRICE = 'productInfo/UPDATE_PRODUCT_DETAIL_PRICE';
+export const UPDATE_PRODUCT_DETAIL_PRICE_SAGA = 'productInfo/UPDATE_PRODUCT_DETAIL_PRICE_SAGA';
+export const DYNAMIC_FORM_PREFIX = '-data-';
 export const PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH = 'productInfo/PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH';
 export const PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH_SAGA = 'productInfo/PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH_SAGA';
 export const PRODUCT_STOCK_DETAIL_INFO = 'productInfo/PRODUCT_STOCK_DETAIL_INFO';
 export const PRODUCT_STOCK_DETAIL_INFO_SAGA = 'productInfo/PRODUCT_STOCK_DETAIL_INFO_SAGA';
 
 
-function *retrievePageMeta(){
+function* retrievePageMeta() {
 	let data = yield service.retrievePageMeta();
-	yield put({type:PRODUCT_INFO_META, data});
+	yield put({ type: PRODUCT_INFO_META, data });
 }
 
-function *searchProductInfo(ops){
+function* searchProductInfo(ops) {
 	let data = yield service.searchProductInfo(ops.data);
-	yield put({type:SEARCH_PRODUCT_INFO, data});
-	if(ops.cb){
-		ops.cb(null,data);
+	yield put({ type: SEARCH_PRODUCT_INFO, data });
+	if (ops.cb) {
+		ops.cb(null, data);
 	}
 }
 
-function * queryCategoryAttribute(ops){
+function* queryCategoryAttribute(ops) {
 	let data = yield service.queryCategoryAttribute(ops.data);
-	yield put({type:GET_CATEGORY_ATTRIBUTE, attr: data});
+	yield put({ type: GET_CATEGORY_ATTRIBUTE, attr: data });
 }
 
-function * queryCity(ops){
+function* queryCity(ops) {
 	let data = yield service.queryCity(ops.data);
-	yield put({type:PRODUCT_INFO_QUERY_CITY, attr: data});
-	
+	yield put({ type: PRODUCT_INFO_QUERY_CITY, attr: data });
+
 }
 
-function * queryPointOfService(ops){
+function* queryPointOfService(ops) {
 	let data = yield service.queryPointOfService(ops.data);
-	yield put({type:PRODUCT_INFO_QUERY_POINTOFSERVICE, attr: data});
+	yield put({ type: PRODUCT_INFO_QUERY_POINTOFSERVICE, attr: data });
 }
 
-function * getProductDetail(ops){
+function* getProductDetail(ops) {
 	let data = yield service.getProductDetail(ops.data);
-	yield put({type:UPDATE_PRODUCT_DETAIL_INFO,  data});
-		if(ops.cb){
-				ops.cb(null);
-				return ;
-			}	
+	yield put({ type: UPDATE_PRODUCT_DETAIL_INFO, data });
+	if (ops.cb) {
+		ops.cb(null);
+		return;
+	}
 
 };
 
-function * retrieveProductDetailPriceList(option){
+function* retrieveProductDetailPriceList(option) {
 
-	let productInfo = select(state=>state.productInfo);
+	let productInfo = select(state => state.productInfo);
 	if (productInfo && productInfo.priceData && productInfo.priceData.results) {
 		if (option.currentPage === productInfo.priceData.pagination.currentPage &&
 			option.pageSize === productInfo.priceData.pagination.pageSize &&
 			option.productCodes[0] === productInfo.priceData.results[0].code) {
-				yield put({type:UPDATE_PRODUCT_DETAIL_PRICE, data:productInfo.priceData });
-					console.log(productInfo.priceData)
-			if(option.cb){
+			yield put({ type: UPDATE_PRODUCT_DETAIL_PRICE, data: productInfo.priceData });
+			console.log(productInfo.priceData)
+			if (option.cb) {
 
 				option.cb(null, productInfo.priceData);
-				return ;
-			}	
+				return;
+			}
 		}
 	}
-	try{
+	try {
 		let _data = yield service.searchProductInfo(option.data);
 		_data.pagination.currentPage = option.currentPage;
 		_data.pagination.pageSize = option.pageSize;
-		yield put({type:UPDATE_PRODUCT_DETAIL_PRICE, data:_data.priceData});
-		if(option.cb){
+		yield put({ type: UPDATE_PRODUCT_DETAIL_PRICE, data: _data.priceData });
+		if (option.cb) {
 			option.cb(null, _data.priceData);
-			return ;
-		}	
-	}catch(err){
-			
+			return;
+		}
+	} catch (err) {
+
 	}
 }
 
-function * retrieveProductDetailPublishList(option){
+function* retrieveProductDetailPublishList(option) {
 
-	let productInfo = select(state=>state.productInfo);
+	let productInfo = select(state => state.productInfo);
 
 	if (productInfo && productInfo.publishData && productInfo.publishData.results) {
 		if (option.currentPage === productInfo.publishData.pagination.currentPage &&
 			option.pageSize === productInfo.publishData.pagination.pageSize &&
 			option.productCodes[0] === productInfo.publishData.results[0].code) {
-				yield put({type:PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH, data:productInfo.priceData });
-				if(option.cb){
-					option.cb(null);
-					return ;
-				}	
+			yield put({ type: PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH, data: productInfo.priceData });
+			if (option.cb) {
+				option.cb(null);
+				return;
 			}
+		}
 	}
 
 	let data = yield service.retrieveProductDetailPublishList(option.data);
-	yield put({type:PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH, data});
-	if(option.cb){
+	yield put({ type: PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH, data });
+	if (option.cb) {
 		option.cb(null);
-		return ;
-	}		
+		return;
+	}
 }
 
-function * getProductStockList(option){
+function* getProductStockList(option) {
 
-	try{
+	try {
 		let data = yield service.getProductStockList(option.data);
-		yield put({type:PRODUCT_STOCK_DETAIL_INFO,  data});
-		if(option.cb){
+		yield put({ type: PRODUCT_STOCK_DETAIL_INFO, data });
+		if (option.cb) {
 			option.cb(null);
-			return ;
-		}	
+			return;
+		}
 
-	}catch(err){
-		if(option.cb){
+	} catch (err) {
+		if (option.cb) {
 			option.cb(null);
-			return ;
-		}	
+			return;
+		}
 	}
 }
 
@@ -145,50 +145,50 @@ const initialState = {
 
 
 export default {
-	
-	watcher:{
-		*watchProductInfo(){
-			yield takeEvery(SEARCH_PRODUCT_INFO_SAGA,searchProductInfo );	
+
+	watcher: {
+		*watchProductInfo() {
+			yield takeEvery(SEARCH_PRODUCT_INFO_SAGA, searchProductInfo);
 		},
-		*watchCategoryAttr(){
-			yield takeEvery(GET_CATEGORY_ATTRIBUTE_SAGA,queryCategoryAttribute );
+		*watchCategoryAttr() {
+			yield takeEvery(GET_CATEGORY_ATTRIBUTE_SAGA, queryCategoryAttribute);
 		},
-		*watchqueryCity(){
-			yield takeEvery(PRODUCT_INFO_QUERY_CITY_SAGA,queryCity);
+		*watchqueryCity() {
+			yield takeEvery(PRODUCT_INFO_QUERY_CITY_SAGA, queryCity);
 		},
-		*watchqueryPOS(){
-			yield takeEvery(PRODUCT_INFO_QUERY_POINTOFSERVICE_SAGA,queryPointOfService);
+		*watchqueryPOS() {
+			yield takeEvery(PRODUCT_INFO_QUERY_POINTOFSERVICE_SAGA, queryPointOfService);
 		},
-		*watchqueryProductDetail(){
-			yield takeEvery(PRODUCT_INFO_QUERY_POINTOFSERVICE_SAGA,getProductDetail);
+		*watchqueryProductDetail() {
+			yield takeEvery(PRODUCT_INFO_QUERY_POINTOFSERVICE_SAGA, getProductDetail);
 		},
-		*watchRetrieveProductDetailPriceList(){
-			yield takeEvery(UPDATE_PRODUCT_DETAIL_PRICE_SAGA,getProductDetail);
+		*watchRetrieveProductDetailPriceList() {
+			yield takeEvery(UPDATE_PRODUCT_DETAIL_PRICE_SAGA, getProductDetail);
 		},
-		*watchPublishList(){
-			yield takeEvery(PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH_SAGA,retrieveProductDetailPublishList);
+		*watchPublishList() {
+			yield takeEvery(PRODUCT_INFO_SEARCH_PRODUCT_PUBLISH_SAGA, retrieveProductDetailPublishList);
 		},
 
 
 	},
 
-	managedSaga:{
-		sagaNamespace:'productInfo',
-		*retrievePageMeta(){
+	managedSaga: {
+		sagaNamespace: 'productInfo',
+		*retrievePageMeta() {
 			let data = yield service.retrievePageMeta();
-			yield put({type:PRODUCT_INFO_META, data});
+			yield put({ type: PRODUCT_INFO_META, data });
 		},
-		* getProductStockList(option){
+		* getProductStockList(option) {
 
-				let data = yield service.getProductStockList(option.data);
-				yield put({type:PRODUCT_STOCK_DETAIL_INFO,  data});
-				if(option.cb){
-					option.cb(null);
-					return ;
-				}	
+			let data = yield service.getProductStockList(option.data);
+			yield put({ type: PRODUCT_STOCK_DETAIL_INFO, data });
+			if (option.cb) {
+				option.cb(null);
+				return;
 			}
+		}
 	},
-	reducer: (state = initialState, action)=>{
+	reducer: (state = initialState, action) => {
 		switch (action.type) {
 			case PRODUCT_INFO_TEST_ACTION:
 				return {

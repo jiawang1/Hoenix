@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const defaultContext = '/hoenix';
+const defaultContext = '/fivestaradminstorefront';
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
@@ -53,21 +53,30 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules|build/,
-                use: ['react-hot-loader/webpack', 'babel-loader?cacheDirectory=true']
+                use: ['react-hot-loader', 'babel-loader?cacheDirectory=true']
             }, {
                 test: /\.(ttf|eot|woff|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 use: 'file-loader'
             }, {
                 test: /\.less$/,
-                use: ExtractTextPlugin.extract({fallback:'style-loader', 
-                    use: [{loader:'css-loader', options:{ sourceMap: true }},
-                        {loader:'postcss-loader', options:{ 
-                            ident: 'postcss',
-                            sourceMap: true,
-                            plugins: loader=>[require('autoprefixer')()]
-                        }},
-                          {loader:'less-loader', options:{ sourceMap: true }}]
-                        })
+                // use: ExtractTextPlugin.extract({fallback:'style-loader', 
+                //     use: [{loader:'css-loader', options:{ sourceMap: true }},
+                //         {loader:'postcss-loader', options:{ 
+                //             ident: 'postcss',
+                //             sourceMap: true,
+                //             plugins: loader=>[require('autoprefixer')()]
+                //         }},
+                //           {loader:'less-loader', options:{ sourceMap: true }}]
+                //         })
+                
+                use: ['style-loader', {loader:'css-loader', options:{ sourceMap: true }},
+                    {loader:'postcss-loader', options:{ 
+                        ident: 'postcss',
+                        sourceMap: true,
+                        plugins: loader=>[require('autoprefixer')()]
+                    }},
+                      {loader:'less-loader', options:{ sourceMap: true }}]
+                    
             }, {
                 test: /\.(png|jpg)$/,
                 use: 'url-loader?limit=8192'
